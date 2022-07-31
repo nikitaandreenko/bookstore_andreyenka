@@ -3,7 +3,7 @@ package com.company.dao;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class Books {
+public class Book {
     private Long id;
     private String book_name;
     private String author;
@@ -81,8 +81,8 @@ public class Books {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Books)) return false;
-        Books books = (Books) o;
+        if (!(o instanceof Book)) return false;
+        Book books = (Book) o;
         return Objects.equals(id, books.id) && Objects.equals(book_name, books.book_name) && Objects.equals(author, books.author) && Objects.equals(isbn, books.isbn) && Objects.equals(price, books.price) && Objects.equals(pages, books.pages) && Objects.equals(binding, books.binding) && Objects.equals(year_publising, books.year_publising);
     }
 
