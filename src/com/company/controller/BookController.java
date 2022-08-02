@@ -1,9 +1,12 @@
 package com.company.controller;
 
 import com.company.dao.BookDao;
+import com.company.dao.BookDaoImpl;
+import com.company.dao.DateSourсe;
 import com.company.entity.Book;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class BookController {
     private BookDao bookDao;
@@ -11,7 +14,10 @@ public class BookController {
     public BookController(BookDao bookDao) {
         this.bookDao = bookDao;
     }
-    public void info(String command) {
+    public void info() {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter command");
+        String command = in.nextLine();
         boolean commandBol = false;
         while (!commandBol) {
             if (command.contains("all")) {
@@ -56,5 +62,40 @@ public class BookController {
                         + book.getYear_publising()));
         commandBol = true;
         return commandBol;
+    }
+
+    public void createBookFromConsole () {
+        Book book = new Book();
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter name book");
+        book.setBook_name(in.nextLine());
+        System.out.println("Enter author book");
+        book.setAuthor(in.nextLine());
+        System.out.println("Enter isbn book");
+        book.setIsbn(in.nextLine());
+        System.out.println("Enter price book");
+        book.setPrice(in.nextBigDecimal());
+        System.out.println("Enter count of pages");
+        book.setBinding(in.nextLine());
+        System.out.println("Enter year_bublising");
+        book.setYear_publising(in.nextInt());
+        bookDao.create(book);
+    }
+    public void updateBookFromConsole () {
+        Book book = new Book();
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter name book");
+        book.setBook_name(in.nextLine());
+        System.out.println("Enter author book");
+        book.setAuthor(in.nextLine());
+        System.out.println("Enter isbn book");
+        book.setIsbn(in.nextLine());
+        System.out.println("Enter price book");
+        book.setPrice(in.nextBigDecimal());
+        System.out.println("Enter count of pages");
+        book.setBinding(in.nextLine());
+        System.out.println("Enter year_bublising");
+        book.setYear_publising(in.nextInt());
+        bookDao.update(book);
     }
 }
