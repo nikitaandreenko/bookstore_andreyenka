@@ -22,9 +22,9 @@ public class BookDaoImpl implements BookDao {
     public static final String DELETE_BY_ID = "DELETE FROM books WHERE id=?";
 
 
-    private final DateSourse datasourse;
+    private final DateSourсe datasourse;
 
-    public BookDaoImpl(DateSourse datasourse) {
+    public BookDaoImpl(DateSourсe datasourse) {
         this.datasourse = datasourse;
     }
 
@@ -150,10 +150,10 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public int countAllBooks() {
-        List <Book> books = getAll();
-        int count =0;
-        for (int i = 0; i<books.size(); i++){
-            count +=1;
+        List<Book> books = getAll();
+        int count = 0;
+        for (int i = 0; i < books.size(); i++) {
+            count += 1;
         }
         return count;
     }

@@ -8,7 +8,6 @@ public class Book {
     private String book_name;
     private String author;
     private String isbn;
-
     private BigDecimal price;
     private Integer pages;
     private String binding;
