@@ -35,7 +35,7 @@ public class BookDaoImpl implements BookDao {
     public Book create(Book book) {
         try {
             Connection connection = dateSourсe.getConnection();
-            PreparedStatement statement = connection.prepareStatement(CREATE_BOOK);
+            PreparedStatement statement = connection.prepareStatement(CREATE_BOOK, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, book.getBook_name());
             statement.setString(2, book.getAuthor());
             statement.setString(3, book.getIsbn());
@@ -43,11 +43,15 @@ public class BookDaoImpl implements BookDao {
             statement.setInt(5, book.getPages());
             statement.setString(6, book.getBinding());
             statement.setInt(7, book.getYear_publising());
-            statement.executeUpdate();
+            if (statement.executeUpdate() == 1) {
+                ResultSet resultSet = statement.getGeneratedKeys();
+                Long id = resultSet.getLong(1);
+                return getById(id);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return getByIsbn(book.getIsbn());
+        return null;
     }
 
     @Override
@@ -114,7 +118,7 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public List<Book> getBooksByAuthor(String author) {
+    public List<Book> getByAuthor(String author) {
         List<Book> books = new ArrayList<>();
         try {
             Connection connection = dateSourсe.getConnection();

@@ -15,7 +15,7 @@ public interface BookDao {
 
     List<Book> getAll();
 
-    List<Book> getBooksByAuthor(String author);
+    List<Book> getByAuthor(String author);
 
     int countAllBooks();
 
