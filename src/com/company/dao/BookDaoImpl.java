@@ -33,9 +33,8 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public Book create(Book book) {
-        try {
-            Connection connection = dateSourсe.getConnection();
-            PreparedStatement statement = connection.prepareStatement(CREATE_BOOK, Statement.RETURN_GENERATED_KEYS);
+        Connection connection = dateSourсe.getConnection();
+        try (PreparedStatement statement = connection.prepareStatement(CREATE_BOOK, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, book.getBook_name());
             statement.setString(2, book.getAuthor());
             statement.setString(3, book.getIsbn());
@@ -56,9 +55,8 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public Book getById(Long id) {
-        try {
-            Connection connection = dateSourсe.getConnection();
-            PreparedStatement statement = connection.prepareStatement(GET_BY_ID);
+        Connection connection = dateSourсe.getConnection();
+        try (PreparedStatement statement = connection.prepareStatement(GET_BY_ID)) {
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -72,9 +70,8 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public Book getByIsbn(String isbn) {
-        try {
-            Connection connection = dateSourсe.getConnection();
-            PreparedStatement statement = connection.prepareStatement(GET_BY_ISBN);
+        Connection connection = dateSourсe.getConnection();
+        try (PreparedStatement statement = connection.prepareStatement(GET_BY_ISBN)) {
             statement.setString(1, isbn);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -90,9 +87,8 @@ public class BookDaoImpl implements BookDao {
     @Override
     public List<Book> getAll() {
         List<Book> books = new ArrayList<>();
-        try {
-            Connection connection = dateSourсe.getConnection();
-            Statement statement = connection.createStatement();
+        Connection connection = dateSourсe.getConnection();
+        try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(GET_ALL);
             while (resultSet.next()) {
                 Book book = process(resultSet);
@@ -119,11 +115,9 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public List<Book> getByAuthor(String author) {
-
-        try {
-            List<Book> books = new ArrayList<>();
-            Connection connection = dateSourсe.getConnection();
-            PreparedStatement statement = connection.prepareStatement(GET_ALL_AUTHOR);
+        List<Book> books = new ArrayList<>();
+        Connection connection = dateSourсe.getConnection();
+        try (PreparedStatement statement = connection.prepareStatement(GET_ALL_AUTHOR)) {
             statement.setString(1, author);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -139,9 +133,8 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public int countAllBooks() {
-        try {
-            Connection connection = dateSourсe.getConnection();
-            Statement statement = connection.createStatement();
+        Connection connection = dateSourсe.getConnection();
+        try (Statement statement = connection.createStatement();) {
             ResultSet resultSet = statement.executeQuery("SELECT count(*) AS total FROM books");
             if (resultSet.next()) {
                 return resultSet.getInt("total");
@@ -154,9 +147,8 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public Book update(Book book) {
-        try {
-            Connection connection = dateSourсe.getConnection();
-            PreparedStatement statement = connection.prepareStatement(UPDATE_BOOK);
+        Connection connection = dateSourсe.getConnection();
+        try (PreparedStatement statement = connection.prepareStatement(UPDATE_BOOK)) {
             statement.setString(1, book.getBook_name());
             statement.setString(2, book.getAuthor());
             statement.setString(3, book.getIsbn());
@@ -176,9 +168,8 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public boolean delete(Long id) {
-        try {
-            Connection connection = dateSourсe.getConnection();
-            PreparedStatement statement = connection.prepareStatement(DELETE_BY_ID);
+        Connection connection = dateSourсe.getConnection();
+        try (PreparedStatement statement = connection.prepareStatement(DELETE_BY_ID)) {
             statement.setLong(1, getById(id).getId());
             return statement.executeUpdate() == 1;
         } catch (SQLException e) {
