@@ -173,10 +173,10 @@ public class BookDaoImpl implements BookDao {
             Connection connection = dateSourсe.getConnection();
             PreparedStatement statement = connection.prepareStatement(DELETE_BY_ID);
             statement.setLong(1, getById(id).getId());
-            statement.executeUpdate();
+            return statement.executeUpdate() == 1;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return true;
+        return false;
     }
 }
