@@ -11,7 +11,7 @@ public interface BookDao {
     //Read
     Book getById(Long id);
 
-    Book getBookByIsbn(String isbn);
+    Book getByIsbn(String isbn);
 
     List<Book> getAll();
 
