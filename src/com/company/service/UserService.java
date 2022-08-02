@@ -8,8 +8,13 @@ import com.company.model.Book;
 import java.util.List;
 
 public class UserService {
-    private BookDao bookDao = new BookDaoImpl(new DateSourсe());
+    private BookDao bookDao;
 
+    public UserService(BookDao bookDao) {
+        this.bookDao = bookDao;
+    }
+
+    //= new BookDaoImpl(new DateSourсe());
     public void info(String command) {
         boolean commandBol = false;
         while (!commandBol) {

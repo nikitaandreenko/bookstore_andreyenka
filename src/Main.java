@@ -8,8 +8,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        UserService userService = new UserService();
         BookDao bookDao = new BookDaoImpl(new DateSourсe());
+        UserService userService = new UserService(bookDao);
         Book book = new Book();
         Scanner in = new Scanner(System.in);
         System.out.println("Enter command");

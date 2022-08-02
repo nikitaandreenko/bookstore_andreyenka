@@ -21,4 +21,10 @@ public class DateSourсe {
         }
         return connection;
     }
+
+    public void close () throws SQLException {
+        if (connection != null) {
+            connection.close();
+        }
+    }
 }
