@@ -1,6 +1,6 @@
 package com.company.dao;
 
-import com.company.model.Book;
+import com.company.entity.Book;
 
 import java.util.List;
 

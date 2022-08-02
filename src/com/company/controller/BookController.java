@@ -1,7 +1,7 @@
 package com.company.controller;
 
 import com.company.dao.BookDao;
-import com.company.model.Book;
+import com.company.entity.Book;
 
 import java.util.List;
 
