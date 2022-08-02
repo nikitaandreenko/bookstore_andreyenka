@@ -9,7 +9,6 @@ import java.util.List;
 
 public class UserService {
     private BookDao bookDao = new BookDaoImpl(new DateSourсe());
-    ;
 
     public void info(String command) {
         boolean commandBol = false;
@@ -17,7 +16,8 @@ public class UserService {
             if (command.equalsIgnoreCase("all")) {
                 List<Book> books = bookDao.getAll();
                 books.forEach(book ->
-                        System.out.println(book.getId() + " " + book.getBook_name() + " " + book.getAuthor() + " " + book.getYear_publising()));
+                        System.out.println(book.getId() + " " + book.getBook_name() + " " + book.getAuthor() + " "
+                                + book.getYear_publising()));
                 commandBol = true;
             } else if (command.contains("get")) {
                 String[] words = command.split(" ");

@@ -119,8 +119,9 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public List<Book> getByAuthor(String author) {
-        List<Book> books = new ArrayList<>();
+
         try {
+            List<Book> books = new ArrayList<>();
             Connection connection = dateSourсe.getConnection();
             PreparedStatement statement = connection.prepareStatement(GET_ALL_AUTHOR);
             statement.setString(1, author);
@@ -129,20 +130,26 @@ public class BookDaoImpl implements BookDao {
                 Book book = process(resultSet);
                 books.add(book);
             }
+            return books;
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return books;
+        return null;
     }
 
     @Override
     public int countAllBooks() {
-        List<Book> books = getAll();
-        int count = 0;
-        for (int i = 0; i < books.size(); i++) {
-            count += 1;
+        try {
+            Connection connection = dateSourсe.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT count(*) AS total FROM books");
+            if (resultSet.next()) {
+                return resultSet.getInt("total");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return count;
+        throw new RuntimeException("Exception");
     }
 
     @Override
@@ -159,7 +166,7 @@ public class BookDaoImpl implements BookDao {
             statement.setInt(7, book.getYear_publising());
             statement.setLong(8, book.getId());
             if (statement.executeUpdate() == 1) {
-                return getById(book.getId())
+                return getById(book.getId());
             }
         } catch (SQLException e) {
             e.printStackTrace();
