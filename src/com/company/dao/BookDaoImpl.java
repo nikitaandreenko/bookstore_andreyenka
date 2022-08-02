@@ -158,11 +158,13 @@ public class BookDaoImpl implements BookDao {
             statement.setString(6, book.getBinding());
             statement.setInt(7, book.getYear_publising());
             statement.setLong(8, book.getId());
-            statement.executeUpdate();
+            if (statement.executeUpdate() == 1) {
+                return getById(book.getId())
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return getById(book.getId());
+        return null;
     }
 
     @Override
