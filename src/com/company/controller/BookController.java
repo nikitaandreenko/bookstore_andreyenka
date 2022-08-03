@@ -14,6 +14,7 @@ public class BookController {
     public BookController(BookDao bookDao) {
         this.bookDao = bookDao;
     }
+
     public void info() {
         Scanner in = new Scanner(System.in);
         System.out.println("Enter command");
@@ -64,7 +65,7 @@ public class BookController {
         return commandBol;
     }
 
-    public void createBookFromConsole () {
+    public void createBookFromConsole() {
         Book book = new Book();
         Scanner in = new Scanner(System.in);
         System.out.println("Enter name book");
@@ -81,7 +82,8 @@ public class BookController {
         book.setYear_publising(in.nextInt());
         bookDao.create(book);
     }
-    public void updateBookFromConsole () {
+
+    public void updateBookFromConsole() {
         Book book = new Book();
         Scanner in = new Scanner(System.in);
         System.out.println("Enter name book");
