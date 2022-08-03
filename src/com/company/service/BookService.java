@@ -11,32 +11,39 @@ public class BookService {
 
     private BookDaoImpl bookDao;
 
-    public BookService (){
+    public BookService() {
         bookDao = new BookDaoImpl();
     }
+
     public Book create(Book book) {
         return bookDao.create(book);
     }
-    public Book getById(Long id){
+
+    public Book getById(Long id) {
         return bookDao.getById(id);
     }
-    public Book getByIsbn(String isbn){
+
+    public Book getByIsbn(String isbn) {
         return bookDao.getByIsbn(isbn);
     }
 
-    public List<Book> getAll(){
+    public List<Book> getAll() {
         return bookDao.getAll();
     }
-    public List<Book> getByAuthor(String author){
+
+    public List<Book> getByAuthor(String author) {
         return bookDao.getByAuthor(author);
     }
-    public int countAllBooks(){
+
+    public int countAllBooks() {
         return bookDao.countAllBooks();
     }
-    public Book update(Book book){
+
+    public Book update(Book book) {
         return bookDao.update(book);
     }
-    public boolean delete(Long id){
+
+    public boolean delete(Long id) {
         return bookDao.delete(id);
     }
 
@@ -49,10 +56,6 @@ public class BookService {
 //        }
 //        return bigDecimal;
 //    }
-
-
-
-
 
 
 }
