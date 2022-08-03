@@ -27,9 +27,13 @@ public class BookDaoImpl implements BookDao {
 
     private final DateSourсe dateSourсe;
 
-    public BookDaoImpl(DateSourсe dateSourсe) {
-        this.dateSourсe = dateSourсe;
+    public BookDaoImpl (){
+        dateSourсe = new DateSourсe();
     }
+
+//    public BookDaoImpl(DateSourсe dateSourсe) {
+//        this.dateSourсe = dateSourсe;
+//    }
 
     @Override
     public Book create(Book book) {
