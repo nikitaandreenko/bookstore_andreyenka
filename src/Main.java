@@ -8,9 +8,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        DateSourсe dateSourсe = new DateSourсe();
-        BookDao bookDao = new BookDaoImpl();
-        BookController bookController = new BookController(bookDao);
+        BookController bookController = new BookController();
         bookController.info();
 //        bookController.createBookFromConsole();
 //        bookController.updateBookFromConsole();

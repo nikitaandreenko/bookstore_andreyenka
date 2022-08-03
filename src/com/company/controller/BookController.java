@@ -4,15 +4,17 @@ import com.company.dao.BookDao;
 import com.company.dao.BookDaoImpl;
 import com.company.dao.DateSourсe;
 import com.company.entity.Book;
+import com.company.service.BookService;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class BookController {
-    private BookDao bookDao;
+    private BookService bookService;
 
-    public BookController(BookDao bookDao) {
-        this.bookDao = bookDao;
+    public BookController() {
+
+        bookService = new BookService();
     }
 
     public void info() {
@@ -39,7 +41,7 @@ public class BookController {
         String[] words = command.split(" ");
         String firstCommandUser = words[0];
         Long secondCommandUser = Long.parseLong(words[1]);
-        System.out.println(bookDao.delete(secondCommandUser));
+        System.out.println(bookService.delete(secondCommandUser));
         commandBol = true;
         return commandBol;
     }
@@ -49,7 +51,7 @@ public class BookController {
         String[] words = command.split(" ");
         String firstCommandUser = words[0];
         Long secondCommandUser = Long.parseLong(words[1]);
-        Book book = bookDao.getById(secondCommandUser);
+        Book book = bookService.getById(secondCommandUser);
         System.out.println(book);
         commandBol = true;
         return commandBol;
@@ -57,7 +59,7 @@ public class BookController {
 
     private boolean all() {
         boolean commandBol;
-        List<Book> books = bookDao.getAll();
+        List<Book> books = bookService.getAll();
         books.forEach(book ->
                 System.out.println(book.getId() + " " + book.getBook_name() + " " + book.getAuthor() + " "
                         + book.getYear_publising()));
@@ -80,7 +82,7 @@ public class BookController {
         book.setBinding(in.nextLine());
         System.out.println("Enter year_bublising");
         book.setYear_publising(in.nextInt());
-        bookDao.create(book);
+        bookService.create(book);
     }
 
     public void updateBookFromConsole() {
@@ -98,6 +100,6 @@ public class BookController {
         book.setBinding(in.nextLine());
         System.out.println("Enter year_bublising");
         book.setYear_publising(in.nextInt());
-        bookDao.update(book);
+        bookService.update(book);
     }
 }

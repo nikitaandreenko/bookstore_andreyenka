@@ -3,7 +3,9 @@ package com.company.service;
 import com.company.dao.BookDaoImpl;
 import com.company.entity.Book;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BookService {
 
@@ -31,9 +33,22 @@ public class BookService {
     public int countAllBooks(){
         return bookDao.countAllBooks();
     }
-    public void delete(Long id){
-        bookDao.delete(id);
+    public Book update(Book book){
+        return bookDao.update(book);
     }
+    public boolean delete(Long id){
+        return bookDao.delete(id);
+    }
+
+//    public BigDecimal  totalPriceByAuthor(String author){
+//        List <Book> books = getByAuthor(author);
+//        BigDecimal bigDecimal = new BigDecimal(0.00);
+//        List <BigDecimal> totals = books.stream().map(book -> book.getPrice()).toList();
+//        for (BigDecimal l : totals){
+//            bigDecimal.add(l);
+//        }
+//        return bigDecimal;
+//    }
 
 
 
