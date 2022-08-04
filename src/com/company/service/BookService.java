@@ -47,15 +47,10 @@ public class BookService {
         return bookDao.delete(id);
     }
 
-//    public BigDecimal  totalPriceByAuthor(String author){
-//        List <Book> books = getByAuthor(author);
-//        BigDecimal bigDecimal = new BigDecimal(0.00);
-//        List <BigDecimal> totals = books.stream().map(book -> book.getPrice()).toList();
-//        for (BigDecimal l : totals){
-//            bigDecimal.add(l);
-//        }
-//        return bigDecimal;
-//    }
-
+    public BigDecimal totalPriceByAuthor(String author) {
+        List<Book> books = getByAuthor(author);
+        BigDecimal total = books.stream().map(Book::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
+        return total;
+    }
 
 }
