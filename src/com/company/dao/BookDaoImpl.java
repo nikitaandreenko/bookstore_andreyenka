@@ -8,8 +8,7 @@ import java.util.List;
 
 public class BookDaoImpl implements BookDao {
 
-    public static final String GET_ALL = "SELECT id, book_name, author, isbn, price, pages, binding, year_publising, language " +
-            "FROM books";
+    public static final String GET_ALL = "SELECT id, book_name, author, isbn, price, pages, binding, year_publising FROM books";
     public static final String GET_BY_ID = "SELECT id, book_name, author, isbn, price, pages, binding, year_publising " +
             "FROM books WHERE id = ?";
 

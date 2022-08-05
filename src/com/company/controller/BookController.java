@@ -13,7 +13,6 @@ public class BookController {
     private BookService bookService;
 
     public BookController() {
-
         bookService = new BookService();
     }
 
