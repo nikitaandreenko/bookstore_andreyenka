@@ -29,8 +29,7 @@ public class BookDaoImpl implements BookDao {
     public static final String DELETE_BY_ID = "DELETE FROM books WHERE id=?";
 
 
-    private final DateSourсe dateSourсe;
-
+    private DateSourсe dateSourсe;
 
     public BookDaoImpl(DateSourсe dateSourсe) {
         this.dateSourсe = dateSourсe;

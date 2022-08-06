@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BookController {
-    private static BookService bookService;
+    private static BookService bookService = new BookService(new BookDaoImpl(new DateSourсe()));
 
     public BookController(BookService bookService) {
         this.bookService = bookService;
@@ -76,6 +76,7 @@ public class BookController {
         book.setBinding(in.nextLine());
         System.out.println("Enter year_bublising");
         book.setYear_publising(in.nextInt());
+        book.setLanguage(Book.Language.valueOf(in.nextLine()));
         bookService.create(book);
     }
 
@@ -94,6 +95,7 @@ public class BookController {
         book.setBinding(in.nextLine());
         System.out.println("Enter year_bublising");
         book.setYear_publising(in.nextInt());
+        book.setLanguage(Book.Language.valueOf(in.nextLine()));
         bookService.update(book);
     }
 }
