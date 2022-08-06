@@ -13,6 +13,12 @@ public class Book {
     private String binding;
     private Integer year_publising;
 
+    private Language language;
+
+    public enum Language {
+        ENGLISH, RUSSIAN, SPANISH, FRENCH, DEUTSCH, ARABIC, CHINESE, JAPANESE
+    }
+
     public Long getId() {
         return id;
     }
@@ -77,22 +83,30 @@ public class Book {
         this.price = price;
     }
 
+    public Language getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Book)) return false;
-        Book books = (Book) o;
-        return Objects.equals(id, books.id) && Objects.equals(book_name, books.book_name) && Objects.equals(author, books.author) && Objects.equals(isbn, books.isbn) && Objects.equals(price, books.price) && Objects.equals(pages, books.pages) && Objects.equals(binding, books.binding) && Objects.equals(year_publising, books.year_publising);
+        Book book = (Book) o;
+        return Objects.equals(id, book.id) && Objects.equals(book_name, book.book_name) && Objects.equals(author, book.author) && Objects.equals(isbn, book.isbn) && Objects.equals(price, book.price) && Objects.equals(pages, book.pages) && Objects.equals(binding, book.binding) && Objects.equals(year_publising, book.year_publising) && language == book.language;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, book_name, author, isbn, price, pages, binding, year_publising);
+        return Objects.hash(id, book_name, author, isbn, price, pages, binding, year_publising, language);
     }
 
     @Override
     public String toString() {
-        return "Books{" +
+        return "Book{" +
                 "id=" + id +
                 ", book_name='" + book_name + '\'' +
                 ", author='" + author + '\'' +
@@ -101,6 +115,7 @@ public class Book {
                 ", pages=" + pages +
                 ", binding='" + binding + '\'' +
                 ", year_publising=" + year_publising +
+                ", language=" + language +
                 '}';
     }
 }

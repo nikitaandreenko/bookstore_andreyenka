@@ -8,19 +8,24 @@ import java.util.List;
 
 public class BookDaoImpl implements BookDao {
 
-    public static final String GET_ALL = "SELECT id, book_name, author, isbn, price, pages, binding, year_publising FROM books";
-    public static final String GET_BY_ID = "SELECT id, book_name, author, isbn, price, pages, binding, year_publising " +
-            "FROM books WHERE id = ?";
+    public static final String GET_ALL = "SELECT books.id, books.book_name, books.author, books.isbn, books.price, books.pages, " +
+            "books.binding, books.year_publising, languages.name " +
+            "FROM books JOIN languages ON language_id = languages.id";
+    public static final String GET_BY_ID = "SELECT books.id, books.book_name, books.author, books.isbn, books.price, books.pages, " +
+            "books.binding, books.year_publising, languages.name " +
+            "FROM books JOIN languages ON language_id = languages.id WHERE books.id = ?";
 
-    public static final String CREATE_BOOK = "INSERT INTO books (book_name, author, isbn, price, pages, binding, " +
-            "year_publising) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    public static final String CREATE_BOOK = "INSERT INTO books (book_name, author, isbn, price, pages, binding," +
+            "year_publising, language_id) VALUES (?, ?, ?, ?, ?, ?, ?, (SELECT id FROM languages WHERE name = ?))";
 
-    public static final String GET_BY_ISBN = "SELECT id, book_name, author, isbn, price, pages, binding, year_publising " +
-            "FROM books WHERE isbn = ?";
+    public static final String GET_BY_ISBN = "SELECT books.id, books.book_name, books.author, books.isbn, books.price, books.pages, " +
+            "books.binding, books.year_publising, languages.name " +
+            "FROM books JOIN languages ON language_id = languages.id WHERE isbn = ?";
     public static final String UPDATE_BOOK = "UPDATE books SET book_name=?, author=?, isbn=?, price=?, pages=?, binding=?, " +
-            "year_publising=? WHERE id=?";
-    public static final String GET_ALL_AUTHOR = "SELECT id, book_name, author, isbn, price, pages, binding, year_publising " +
-            "FROM books WHERE author =?";
+            "year_publising=?, language_id = (SELECT id FROM languages WHERE name = ?) WHERE id=?";
+    public static final String GET_ALL_AUTHOR = "SELECT books.id, books.book_name, books.author, books.isbn, books.price, books.pages, " +
+            "books.binding, books.year_publising, languages.name " +
+            "FROM books JOIN languages ON language_id = languages.id WHERE author =?";
     public static final String DELETE_BY_ID = "DELETE FROM books WHERE id=?";
 
 
@@ -34,7 +39,7 @@ public class BookDaoImpl implements BookDao {
     @Override
     public Book create(Book book) {
         Connection connection = dateSourсe.getConnection();
-        try (PreparedStatement statement = connection.prepareStatement(CREATE_BOOK, Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement statement = connection.prepareStatement(CREATE_BOOK)) {
             statement.setString(1, book.getBook_name());
             statement.setString(2, book.getAuthor());
             statement.setString(3, book.getIsbn());
@@ -42,10 +47,9 @@ public class BookDaoImpl implements BookDao {
             statement.setInt(5, book.getPages());
             statement.setString(6, book.getBinding());
             statement.setInt(7, book.getYear_publising());
+            statement.setString(8, book.getLanguage().toString());
             if (statement.executeUpdate() == 1) {
-                ResultSet resultSet = statement.getGeneratedKeys();
-                Long id = resultSet.getLong(1);
-                return getById(id);
+                return getByIsbn(book.getIsbn());
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -110,6 +114,7 @@ public class BookDaoImpl implements BookDao {
         book.setPages(resultSet.getInt("pages"));
         book.setBinding(resultSet.getString("binding"));
         book.setYear_publising(resultSet.getInt("year_publising"));
+        book.setLanguage(Book.Language.valueOf(resultSet.getString("name")));
         return book;
     }
 
@@ -156,7 +161,8 @@ public class BookDaoImpl implements BookDao {
             statement.setInt(5, book.getPages());
             statement.setString(6, book.getBinding());
             statement.setInt(7, book.getYear_publising());
-            statement.setLong(8, book.getId());
+            statement.setString(8, book.getLanguage().toString());
+            statement.setLong(9, book.getId());
             if (statement.executeUpdate() == 1) {
                 return getById(book.getId());
             }

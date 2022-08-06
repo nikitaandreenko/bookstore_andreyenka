@@ -32,6 +32,45 @@ VALUES ('it starts us', 'Collen Hoover', '978-1668001226', 11.99, 366, 'solid', 
                ('Mastering the Art of French Cooking', 'Julia Child', '978-1238725736', 19.50, 1244, 'soft', 2015),
                ('A Letter From Your Teacher: On the First Day of School', 'Shannon Olsen', '978-1735414126', 13.99, 31, 'soft', 2007);
 
+CREATE TABLE languages
+(
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(100) UNIQUE NOT NULL
+);
 
+INSERT INTO languages (name)
+VALUES
+('ENGLISH'),
+('RUSSIAN'),
+('SPANISH'),
+('FRENCH'),
+('DEUTSCH'),
+('ARABIC'),
+('CHINESE'),
+('JAPANESE');
+
+ALTER TABLE books ADD language_id BIGINT REFERENCES languages(id);
+
+UPDATE books SET language_id = (SELECT id FROM languages WHERE name = 'ENGLISH') WHERE id =1;
+UPDATE books SET language_id = (SELECT id FROM languages WHERE name = 'RUSSIAN') WHERE id =2;
+UPDATE books SET language_id = (SELECT id FROM languages WHERE name = 'RUSSIAN') WHERE id =3;
+UPDATE books SET language_id = (SELECT id FROM languages WHERE name = 'SPANISH') WHERE id =4;
+UPDATE books SET language_id = (SELECT id FROM languages WHERE name = 'FRENCH') WHERE id =5;
+UPDATE books SET language_id = (SELECT id FROM languages WHERE name = 'CHINESE') WHERE id =6;
+UPDATE books SET language_id = (SELECT id FROM languages WHERE name = 'CHINESE') WHERE id =7;
+UPDATE books SET language_id = (SELECT id FROM languages WHERE name = 'ENGLISH') WHERE id =8;
+UPDATE books SET language_id = (SELECT id FROM languages WHERE name = 'ENGLISH') WHERE id =9;
+UPDATE books SET language_id = (SELECT id FROM languages WHERE name = 'ENGLISH') WHERE id =10;
+UPDATE books SET language_id = (SELECT id FROM languages WHERE name = 'RUSSIAN') WHERE id =11;
+UPDATE books SET language_id = (SELECT id FROM languages WHERE name = 'RUSSIAN') WHERE id =12;
+UPDATE books SET language_id = (SELECT id FROM languages WHERE name = 'JAPANESE') WHERE id =13;
+UPDATE books SET language_id = (SELECT id FROM languages WHERE name = 'ENGLISH') WHERE id =14;
+UPDATE books SET language_id = (SELECT id FROM languages WHERE name = 'ENGLISH') WHERE id =15;
+UPDATE books SET language_id = (SELECT id FROM languages WHERE name = 'ENGLISH') WHERE id =16;
+UPDATE books SET language_id = (SELECT id FROM languages WHERE name = 'SPANISH') WHERE id =17;
+UPDATE books SET language_id = (SELECT id FROM languages WHERE name = 'ENGLISH') WHERE id =18;
+UPDATE books SET language_id = (SELECT id FROM languages WHERE name = 'ENGLISH') WHERE id =19;
+UPDATE books SET language_id = (SELECT id FROM languages WHERE name = 'FRENCH') WHERE id =20;
+UPDATE books SET language_id = (SELECT id FROM languages WHERE name = 'ENGLISH') WHERE id =21;
 
 
