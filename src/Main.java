@@ -12,8 +12,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        DateSourсe dateSourсe = new DateSourсe();
         BookController.info();
-//        bookController.createBookFromConsole();
-//        bookController.updateBookFromConsole();
     }
 }

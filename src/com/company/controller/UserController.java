@@ -73,7 +73,7 @@ public class UserController {
         System.out.println("Enter email");
         user.setEmail(in.nextLine());
         System.out.println("Enter role");
-        user.setRole(User.Role.valueOf(in.nextLine()));
+        user.setRole(User.Role.valueOf((in.nextLine()).toUpperCase()));
         userService.create(user);
     }
 
@@ -89,7 +89,7 @@ public class UserController {
         System.out.println("Enter email");
         user.setEmail(in.nextLine());
         System.out.println("Enter role");
-        user.setRole(User.Role.valueOf(in.nextLine()));
+        user.setRole(User.Role.valueOf((in.nextLine()).toUpperCase()));
         userService.update(user);
     }
 

@@ -76,7 +76,8 @@ public class BookController {
         book.setBinding(in.nextLine());
         System.out.println("Enter year_bublising");
         book.setYear_publising(in.nextInt());
-        book.setLanguage(Book.Language.valueOf(in.nextLine()));
+        System.out.println("Enter language ");
+        book.setLanguage(Book.Language.valueOf((in.nextLine()).toUpperCase()));
         bookService.create(book);
     }
 
@@ -95,7 +96,8 @@ public class BookController {
         book.setBinding(in.nextLine());
         System.out.println("Enter year_bublising");
         book.setYear_publising(in.nextInt());
-        book.setLanguage(Book.Language.valueOf(in.nextLine()));
+        System.out.println("Enter language ");
+        book.setLanguage(Book.Language.valueOf((in.nextLine()).toUpperCase()));
         bookService.update(book);
     }
 }
