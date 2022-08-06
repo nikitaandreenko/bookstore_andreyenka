@@ -8,11 +8,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        DateSourсe dateSourсe = new DateSourсe();
-        BookDao bookDao = new BookDaoImpl(dateSourсe);
-        BookController bookController = new BookController(bookDao);
-        bookController.info();
-        bookController.createBookFromConsole();
-        bookController.updateBookFromConsole();
+        BookController.info();
+//        bookController.createBookFromConsole();
+//        bookController.updateBookFromConsole();
     }
 }

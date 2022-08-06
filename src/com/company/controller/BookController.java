@@ -4,29 +4,33 @@ import com.company.dao.BookDao;
 import com.company.dao.BookDaoImpl;
 import com.company.dao.DateSourсe;
 import com.company.entity.Book;
+import com.company.service.BookService;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class BookController {
-    private BookDao bookDao;
+    private static BookService bookService;
 
-    public BookController(BookDao bookDao) {
-        this.bookDao = bookDao;
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
     }
 
-    public void info() {
+    public static void info() {
         Scanner in = new Scanner(System.in);
         System.out.println("Enter command");
         String command = in.nextLine();
         boolean commandBol = false;
         while (!commandBol) {
             if (command.contains("all")) {
-                commandBol = all();
+                all();
+                commandBol = true;
             } else if (command.contains("get")) {
-                commandBol = get(command);
+                get(command);
+                commandBol = true;
             } else if (command.contains("delete")) {
-                commandBol = delete(command);
+                delete(command);
+                commandBol = true;
             } else if (command.equalsIgnoreCase("exit")) {
                 System.out.println("End app");
                 commandBol = true;
@@ -34,38 +38,30 @@ public class BookController {
         }
     }
 
-    private boolean delete(String command) {
-        boolean commandBol;
+    private static void delete(String command) {
         String[] words = command.split(" ");
         String firstCommandUser = words[0];
         Long secondCommandUser = Long.parseLong(words[1]);
-        System.out.println(bookDao.delete(secondCommandUser));
-        commandBol = true;
-        return commandBol;
+        bookService.delete(secondCommandUser);
     }
 
-    private boolean get(String command) {
-        boolean commandBol;
+    private static void get(String command) {
         String[] words = command.split(" ");
         String firstCommandUser = words[0];
         Long secondCommandUser = Long.parseLong(words[1]);
-        Book book = bookDao.getById(secondCommandUser);
+        Book book = bookService.getById(secondCommandUser);
         System.out.println(book);
-        commandBol = true;
-        return commandBol;
     }
 
-    private boolean all() {
+    private static void all() {
         boolean commandBol;
-        List<Book> books = bookDao.getAll();
+        List<Book> books = bookService.getAll();
         books.forEach(book ->
                 System.out.println(book.getId() + " " + book.getBook_name() + " " + book.getAuthor() + " "
                         + book.getYear_publising()));
-        commandBol = true;
-        return commandBol;
     }
 
-    public void createBookFromConsole() {
+    public static void createBookFromConsole() {
         Book book = new Book();
         Scanner in = new Scanner(System.in);
         System.out.println("Enter name book");
@@ -80,10 +76,10 @@ public class BookController {
         book.setBinding(in.nextLine());
         System.out.println("Enter year_bublising");
         book.setYear_publising(in.nextInt());
-        bookDao.create(book);
+        bookService.create(book);
     }
 
-    public void updateBookFromConsole() {
+    public static void updateBookFromConsole() {
         Book book = new Book();
         Scanner in = new Scanner(System.in);
         System.out.println("Enter name book");
@@ -98,6 +94,6 @@ public class BookController {
         book.setBinding(in.nextLine());
         System.out.println("Enter year_bublising");
         book.setYear_publising(in.nextInt());
-        bookDao.update(book);
+        bookService.update(book);
     }
 }
