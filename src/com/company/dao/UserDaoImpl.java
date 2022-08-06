@@ -12,17 +12,17 @@ public class UserDaoImpl implements UserDao {
     public static final String GET_ALL = "SELECT users.id, users.first_name, users.last_name, users.age, users.email, roles.name " +
             "FROM users JOIN roles ON role_id = roles.id";
     public static final String GET_BY_ID = "SELECT users.id, users.first_name, users.last_name, users.age, users.email, roles.name " +
-            "FROM users JOIN roles ON role_id = roles.id WHERE books.id = ?";
+            "FROM users JOIN roles ON role_id = roles.id WHERE users.id = ?";
 
     public static final String CREATE_USER = "INSERT INTO users (first_name, last_name, age, email, role_id) " +
             "VALUES (?, ?, ?, ?, (SELECT id FROM roles WHERE name = ?))";
 
     public static final String GET_BY_EMAIL = "SELECT users.id, users.first_name, users.last_name, users.age, users.email, roles.name " +
-            "FROM users JOIN roles ON role_id = roles.id WHERE books.email = ?";
+            "FROM users JOIN roles ON role_id = roles.id WHERE users.email = ?";
     public static final String UPDATE_USER = "UPDATE users SET first_name=?, last_name=?, age=?, email=?, " +
             "role_id = (SELECT id FROM roles WHERE name = ?) WHERE id=?";
     public static final String GET_ALL_LASTNAME = "SELECT users.id, users.first_name, users.last_name, users.age, users.email, roles.name " +
-            "FROM users JOIN roles ON role_id = roles.id WHERE books.last_name= ?";
+            "FROM users JOIN roles ON role_id = roles.id WHERE users.last_name= ?";
     public static final String DELETE_BY_ID = "DELETE FROM users WHERE id=?";
 
 
