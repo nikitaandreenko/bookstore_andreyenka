@@ -74,3 +74,52 @@ UPDATE books SET language_id = (SELECT id FROM languages WHERE name = 'FRENCH') 
 UPDATE books SET language_id = (SELECT id FROM languages WHERE name = 'ENGLISH') WHERE id =21;
 
 
+CREATE TABLE roles
+(
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(100) UNIQUE NOT NULL
+);
+
+INSERT INTO roles (name)
+VALUES
+('USER'),
+('MANAGER'),
+('ADMIN');
+
+CREATE TABLE users
+(
+    id BIGSERIAL PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    age INTEGER,
+    email VARCHAR(100)UNIQUE NOT NULL,
+    role_id BIGINT REFERENCES roles (id)
+);
+
+INSERT INTO users (first_name, last_name, age, email, role_id)
+VALUES ('Nik', 'Swanson', 35, 'n.sw@gmail.com', (SELECT id FROM roles WHERE name = 'ADMIN')),
+       ('Nik', 'Meclo', 24, 'n.mcl@gmail.com', (SELECT id FROM roles WHERE name = 'ADMIN')),
+       ('Sam', 'Growner', 42, 's.gr_4@mail.com', (SELECT id FROM roles WHERE name = 'USER')),
+       ('Wane', 'Rooney', 39, 'WR.10@gmail.com', (SELECT id FROM roles WHERE name = 'MANAGER')),
+       ('Mike', 'Ramcey', 28, 'm.rmc@gmail.com', (SELECT id FROM roles WHERE name = 'USER')),
+       ('Samanta', 'Robson', 42, 'samanta_rob123@gmail.com', (SELECT id FROM roles WHERE name = 'ADMIN')),
+       ('Selena', 'Gomes', 43, 'selena_love_sing@gmail.com', (SELECT id FROM roles WHERE name = 'USER')),
+       ('Raley', 'Rricey', 56, 'ral.12387@mail.com', (SELECT id FROM roles WHERE name = 'MANAGER')),
+       ('Brad', 'Spacey', 35, 'br_spacey.com', (SELECT id FROM roles WHERE name = 'ADMIN')),
+       ('Helena', 'Rassy', 42, 'helena.ras456@gmail.com', (SELECT id FROM roles WHERE name = 'USER')),
+       ('Mike', 'Walent', 50, 'mik.walent@mail.com', (SELECT id FROM roles WHERE name = 'MANAGER')),
+       ('Stasey', 'Lacatelli', 35, 'locat.ital12@gmail.com', (SELECT id FROM roles WHERE name = 'ADMIN')),
+       ('Jeck', 'Peterson', 46, 'pet.jeck1987@gmail.com', (SELECT id FROM roles WHERE name = 'USER')),
+       ('Molly', 'Swanson', 22, 'swans.mol1999@gmail.com', (SELECT id FROM roles WHERE name = 'USER')),
+       ('Rob', 'Jeferson', 17, 'jeferson19991999@gmail.com', (SELECT id FROM roles WHERE name = 'USER')),
+       ('Jim', 'Paranga', 40, 'par.jim_1998@mail.com', (SELECT id FROM roles WHERE name = 'USER')),
+       ('Samanta', 'Metry', 35, 'sam.petry15678@gmail.com', (SELECT id FROM roles WHERE name = 'ADMIN')),
+       ('Sam', 'Cook', 19, 'cokky_sam1987@gmail.com', (SELECT id FROM roles WHERE name = 'USER')),
+       ('Wolly', 'Monson', 59, 'monson_1967@gmail.com', (SELECT id FROM roles WHERE name = 'MANAGER')),
+       ('Nik', 'Cracks', 49, 'cr_nik_1979@gmail.com', (SELECT id FROM roles WHERE name = 'ADMIN')),
+       ('Silly', 'Sorento', 42, 'sil.srn18@gmail.com', (SELECT id FROM roles WHERE name = 'USER'));
+
+
+
+
+

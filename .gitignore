@@ -27,3 +27,12 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+# idea settings
+.idea/
+*.iml
+
+# Compiled class file
+*.class
+
+

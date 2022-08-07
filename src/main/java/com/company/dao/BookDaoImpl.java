@@ -31,7 +31,6 @@ public class BookDaoImpl implements BookDao {
 
     private final DateSourсe dateSourсe;
 
-
     public BookDaoImpl(DateSourсe dateSourсe) {
         this.dateSourсe = dateSourсe;
     }
