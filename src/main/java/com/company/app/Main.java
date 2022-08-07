@@ -1,3 +1,5 @@
+package com.company.app;
+
 import com.company.dao.BookDao;
 import com.company.dao.BookDaoImpl;
 import com.company.dao.DateSourсe;
@@ -12,7 +14,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        DateSourсe dateSourсe = new DateSourсe();
         BookController.info();
     }
 }
