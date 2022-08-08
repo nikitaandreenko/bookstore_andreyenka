@@ -1,12 +1,10 @@
 package com.company.service;
 
-import com.company.dao.BookDaoImpl;
+import com.company.dao.impl.BookDaoImpl;
 import com.company.entity.Book;
-import com.company.util.LoggerBookstore;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class BookService {
 

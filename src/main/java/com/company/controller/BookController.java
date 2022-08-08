@@ -1,8 +1,7 @@
 package com.company.controller;
 
-import com.company.dao.BookDao;
-import com.company.dao.BookDaoImpl;
-import com.company.dao.DateSourсe;
+import com.company.dao.impl.BookDaoImpl;
+import com.company.dao.connection.DateSourсe;
 import com.company.entity.Book;
 import com.company.service.BookService;
 import com.company.util.LoggerBookstore;

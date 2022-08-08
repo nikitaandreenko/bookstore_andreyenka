@@ -1,10 +1,8 @@
 package com.company.controller;
 
-import com.company.dao.DateSourсe;
-import com.company.dao.UserDaoImpl;
-import com.company.entity.Book;
+import com.company.dao.connection.DateSourсe;
+import com.company.dao.impl.UserDaoImpl;
 import com.company.entity.User;
-import com.company.service.BookService;
 import com.company.service.UserService;
 import com.company.util.LoggerBookstore;
 

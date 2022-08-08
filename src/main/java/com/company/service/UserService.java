@@ -1,11 +1,8 @@
 package com.company.service;
 
-import com.company.dao.BookDaoImpl;
-import com.company.dao.UserDaoImpl;
-import com.company.entity.Book;
+import com.company.dao.impl.UserDaoImpl;
 import com.company.entity.User;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public class UserService {

@@ -1,4 +1,4 @@
-package com.company.dao;
+package com.company.dao.connection;
 
 import com.company.util.LoggerBookstore;
 
@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-import java.util.logging.Logger;
 
 public class DateSourсe {
     private static final String URL_KEY = "db.url";

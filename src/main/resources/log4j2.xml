@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="info">
+<Configuration status="error">
     <Properties>
-        <projec.build.sourceEncoding>UTF-8</projec.build.sourceEncoding>
+<!--        <projec.build.sourceEncoding>UTF-8</projec.build.sourceEncoding>-->
         <property name="LOG_DIR">logs</property>
         <property name="ARCHIVE_LOG_DIR">${LOG_DIR}/archive</property>
         <property name="pattern_file">%d{yyyy-MM-dd HH:mm:ss} [%M] %-5level %logger{5} - %msg%n</property>
-        <property name="pattern_console">%d{HH:mm:ss} [%M] %-5level - %msg%n</property>
+        <property name="pattern_console">%d{HH:mm:ss} ~-=%M=-~ %-5level %logger{5} - %msg%n</property>
     </Properties>
+
     <Appenders>
-        <Console name="Console" target="SYSTEM_OUT">
+        <Console name="MyConsole">
             <PatternLayout pattern="${pattern_console}"/>
         </Console>
-
+        <Console name="MyConsole2">
+            <PatternLayout pattern="${pattern_file}"/>
+        </Console>
         <File name="File1" fileName="${LOG_DIR}/text.log" bufferedIO="true">
             <PatternLayout pattern="${pattern_file}"/>
         </File>
-
         <RollingFile name="FileZip" fileName="${LOG_DIR}/text_arc.log" append="true"
                      filePattern="${ARCHIVE_LOD_DIR}/${date:yyyy-MM-dd}/%d{yyyy-MM-dd_HH-mm}_%i.log.zip">
             <PatternLayout pattern="${pattern_file}"/>
@@ -29,7 +31,7 @@
 
     <Loggers>
         <Logger name="Log_Console" level="debug" additivity="false">
-            <AppenderRef ref="Console"/>
+            <AppenderRef ref="MyConsole"/>
         </Logger>
         <Logger name="Log_File" level="info" additivity="false">
             <AppenderRef ref="File1"/>
@@ -38,9 +40,12 @@
             <AppenderRef ref="FileZip"/>
         </Logger>
 
-        <Root level="debug">
-            <AppenderRef ref="Console"/>
-            <AppenderRef ref="File1" level="info"/>
+<!--        <Logger name="com.company" level="debug">-->
+<!--            <AppenderRef ref="MyConsole2"/>-->
+<!--        </Logger>-->
+        <Root level="info">
+            <AppenderRef ref="MyConsole"/>
+<!--            <AppenderRef ref="File1" level="info"/>-->
         </Root>
     </Loggers>
 
