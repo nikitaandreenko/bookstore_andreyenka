@@ -1,10 +1,13 @@
 package com.company.dao;
 
+import com.company.util.LoggerBookstore;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 public class DateSourсe {
     private static final String URL_KEY = "db.url";
@@ -15,6 +18,7 @@ public class DateSourсe {
     private Properties properties;
 
     public Connection getConnection() {
+        LoggerBookstore.logger.info("Connection with database");
         if (connection == null) {
             try {
                 properties = new Properties();

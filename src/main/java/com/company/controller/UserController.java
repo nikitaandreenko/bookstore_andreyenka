@@ -6,6 +6,7 @@ import com.company.entity.Book;
 import com.company.entity.User;
 import com.company.service.BookService;
 import com.company.service.UserService;
+import com.company.util.LoggerBookstore;
 
 import java.util.List;
 import java.util.Scanner;
@@ -40,6 +41,7 @@ public class UserController {
     }
 
     private static void delete(String command) {
+        LoggerBookstore.logger.debug("Get service metod  delete from userService");
         String[] words = command.split(" ");
         String firstCommandUser = words[0];
         Long secondCommandUser = Long.parseLong(words[1]);
@@ -47,6 +49,7 @@ public class UserController {
     }
 
     private static void get(String command) {
+        LoggerBookstore.logger.debug("Get service metod getById from userService");
         String[] words = command.split(" ");
         String firstCommandUser = words[0];
         Long secondCommandUser = Long.parseLong(words[1]);
@@ -56,6 +59,7 @@ public class UserController {
 
     private static void all() {
         boolean commandBol;
+        LoggerBookstore.logger.debug("Get service metod getAll from userService");
         List<User> users = userService.getAll();
         users.forEach(user ->
                 System.out.println(user.getId() + " " + user.getFirstName() + " " + user.getLastName()));
@@ -74,6 +78,7 @@ public class UserController {
         user.setEmail(in.nextLine());
         System.out.println("Enter role");
         user.setRole(User.Role.valueOf((in.nextLine()).toUpperCase()));
+        LoggerBookstore.logger.debug("Get service metod create from userService");
         userService.create(user);
     }
 
@@ -90,6 +95,7 @@ public class UserController {
         user.setEmail(in.nextLine());
         System.out.println("Enter role");
         user.setRole(User.Role.valueOf((in.nextLine()).toUpperCase()));
+        LoggerBookstore.logger.debug("Get service metod update from userService");
         userService.update(user);
     }
 }

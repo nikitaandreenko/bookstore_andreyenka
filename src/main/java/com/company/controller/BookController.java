@@ -5,6 +5,7 @@ import com.company.dao.BookDaoImpl;
 import com.company.dao.DateSourсe;
 import com.company.entity.Book;
 import com.company.service.BookService;
+import com.company.util.LoggerBookstore;
 
 import java.util.List;
 import java.util.Scanner;
@@ -42,6 +43,7 @@ public class BookController {
         String[] words = command.split(" ");
         String firstCommandUser = words[0];
         Long secondCommandUser = Long.parseLong(words[1]);
+        LoggerBookstore.logger.debug("Get service metod delete from booService");
         bookService.delete(secondCommandUser);
     }
 
@@ -49,12 +51,14 @@ public class BookController {
         String[] words = command.split(" ");
         String firstCommandUser = words[0];
         Long secondCommandUser = Long.parseLong(words[1]);
+        LoggerBookstore.logger.debug("Get service metod getById from booService");
         Book book = bookService.getById(secondCommandUser);
         System.out.println(book);
     }
 
     private static void all() {
         boolean commandBol;
+        LoggerBookstore.logger.debug("Get service metod getAll from booService");
         List<Book> books = bookService.getAll();
         books.forEach(book ->
                 System.out.println(book.getId() + " " + book.getBook_name() + " " + book.getAuthor() + " "
@@ -78,6 +82,7 @@ public class BookController {
         book.setYear_publising(in.nextInt());
         System.out.println("Enter language ");
         book.setLanguage(Book.Language.valueOf((in.nextLine()).toUpperCase()));
+        LoggerBookstore.logger.debug("Get service metod create from booService");
         bookService.create(book);
     }
 
@@ -98,6 +103,7 @@ public class BookController {
         book.setYear_publising(in.nextInt());
         System.out.println("Enter language ");
         book.setLanguage(Book.Language.valueOf((in.nextLine()).toUpperCase()));
+        LoggerBookstore.logger.debug("Get service metod update from booService");
         bookService.update(book);
     }
 }
