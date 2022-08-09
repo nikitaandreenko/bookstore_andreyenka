@@ -1,7 +1,8 @@
 package com.company.dao;
 
+import com.company.dao.impl.BookDao;
 import com.company.entity.Book;
-import com.company.util.LoggerBookstore;
+
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,14 +11,14 @@ import java.util.List;
 public class BookDaoImpl implements BookDao {
 
     public static final String GET_ALL = "SELECT books.id, books.book_name, books.author, books.isbn, books.price, books.pages, " +
-            "books.binding, books.year_publising, languages.name " +
+            "books.binding, books.year_publishing, languages.name " +
             "FROM books JOIN languages ON language_id = languages.id";
     public static final String GET_BY_ID = "SELECT books.id, books.book_name, books.author, books.isbn, books.price, books.pages, " +
-            "books.binding, books.year_publising, languages.name " +
+            "books.binding, books.year_publishing, languages.name " +
             "FROM books JOIN languages ON language_id = languages.id WHERE books.id = ?";
 
     public static final String CREATE_BOOK = "INSERT INTO books (book_name, author, isbn, price, pages, binding," +
-            "year_publising, language_id) VALUES (?, ?, ?, ?, ?, ?, ?, (SELECT id FROM languages WHERE name = ?))";
+            "year_publishing, language_id) VALUES (?, ?, ?, ?, ?, ?, ?, (SELECT id FROM languages WHERE name = ?))";
 
     public static final String GET_BY_ISBN = "SELECT books.id, books.book_name, books.author, books.isbn, books.price, books.pages, " +
             "books.binding, books.year_publising, languages.name " +

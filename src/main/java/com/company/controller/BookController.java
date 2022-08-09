@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BookController {
-    private static BookService bookService = new BookService(new BookDaoImpl(new DateSourсe()));
+    private static BookService bookService;
 
     public BookController(BookService bookService) {
         this.bookService = bookService;

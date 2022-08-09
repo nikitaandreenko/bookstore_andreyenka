@@ -11,7 +11,7 @@ public class Book {
     private BigDecimal price;
     private Integer pages;
     private String binding;
-    private Integer year_publising;
+    private Integer year_publishing;
 
     private Language language;
 
@@ -68,11 +68,11 @@ public class Book {
     }
 
     public Integer getYear_publishing() {
-        return year_publising;
+        return year_publishing;
     }
 
-    public void setYear_publishing(Integer year_publising) {
-        this.year_publising = year_publising;
+    public void setYear_publishing(Integer year_publishing) {
+        this.year_publishing = year_publishing;
     }
 
     public BigDecimal getPrice() {
@@ -96,12 +96,12 @@ public class Book {
         if (this == o) return true;
         if (!(o instanceof Book)) return false;
         Book book = (Book) o;
-        return Objects.equals(id, book.id) && Objects.equals(book_name, book.book_name) && Objects.equals(author, book.author) && Objects.equals(isbn, book.isbn) && Objects.equals(price, book.price) && Objects.equals(pages, book.pages) && Objects.equals(binding, book.binding) && Objects.equals(year_publising, book.year_publising) && language == book.language;
+        return Objects.equals(id, book.id) && Objects.equals(book_name, book.book_name) && Objects.equals(author, book.author) && Objects.equals(isbn, book.isbn) && Objects.equals(price, book.price) && Objects.equals(pages, book.pages) && Objects.equals(binding, book.binding) && Objects.equals(year_publishing, book.year_publishing) && language == book.language;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, book_name, author, isbn, price, pages, binding, year_publising, language);
+        return Objects.hash(id, book_name, author, isbn, price, pages, binding, year_publishing, language);
     }
 
     @Override
@@ -114,7 +114,7 @@ public class Book {
                 ", price=" + price +
                 ", pages=" + pages +
                 ", binding='" + binding + '\'' +
-                ", year_publising=" + year_publising +
+                ", year_publishing=" + year_publishing +
                 ", language=" + language +
                 '}';
     }

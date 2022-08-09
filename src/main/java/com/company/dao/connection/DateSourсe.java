@@ -14,7 +14,7 @@ import java.util.Properties;
 public class DateSourсe {
 
 
-    private static final Logger log = LogManager.getLogger();
+    private static final Logger log = LogManager.getLogger(DateSourсe.class);
     private static final String URL_KEY = "db.url";
     private static final String USER_KEY = "db.user";
     private static final String PASSWORD_KEY = "db.password";
