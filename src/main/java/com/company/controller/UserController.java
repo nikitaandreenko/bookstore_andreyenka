@@ -1,23 +1,23 @@
 package com.company.controller;
 
-import com.company.dao.DateSourсe;
 import com.company.dao.UserDaoImpl;
 import com.company.entity.Book;
 import com.company.entity.User;
 import com.company.service.BookService;
 import com.company.service.UserService;
 
+
 import java.util.List;
 import java.util.Scanner;
 
 public class UserController {
-    private static UserService userService = new UserService(new UserDaoImpl(new DateSourсe()));
+    private static UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
-    public static void info() {
+    public void info() {
         Scanner in = new Scanner(System.in);
         System.out.println("Enter command");
         String command = in.nextLine();
@@ -39,14 +39,14 @@ public class UserController {
         }
     }
 
-    private static void delete(String command) {
+    private void delete(String command) {
         String[] words = command.split(" ");
         String firstCommandUser = words[0];
         Long secondCommandUser = Long.parseLong(words[1]);
         userService.delete(secondCommandUser);
     }
 
-    private static void get(String command) {
+    private void get(String command) {
         String[] words = command.split(" ");
         String firstCommandUser = words[0];
         Long secondCommandUser = Long.parseLong(words[1]);
@@ -54,14 +54,14 @@ public class UserController {
         System.out.println(user);
     }
 
-    private static void all() {
+    private void all() {
         boolean commandBol;
         List<User> users = userService.getAll();
         users.forEach(user ->
                 System.out.println(user.getId() + " " + user.getFirstName() + " " + user.getLastName()));
     }
 
-    public static void createUserFromConsole() {
+    public void createUserFromConsole() {
         User user = new User();
         Scanner in = new Scanner(System.in);
         System.out.println("Enter first name");
@@ -77,7 +77,7 @@ public class UserController {
         userService.create(user);
     }
 
-    public static void updateUserFromConsole() {
+    public void updateUserFromConsole() {
         User user = new User();
         Scanner in = new Scanner(System.in);
         System.out.println("Enter first name");

@@ -35,4 +35,5 @@ bin/
 # Compiled class file
 *.class
 
-
+# Logging file
+*.log
