@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="info">
     <Properties>
-        <projec.build.sourceEncoding>UTF-8</projec.build.sourceEncoding>
+<!--        <projec.build.sourceEncoding>UTF-8</projec.build.sourceEncoding>-->
         <property name="LOG_DIR">logs</property>
         <property name="ARCHIVE_LOG_DIR">${LOG_DIR}/archive</property>
         <property name="pattern_file">%d{yyyy-MM-dd HH:mm:ss} [%M] %-5level %logger{5} - %msg%n</property>

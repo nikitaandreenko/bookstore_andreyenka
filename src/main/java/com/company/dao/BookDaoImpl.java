@@ -10,22 +10,22 @@ import java.util.List;
 public class BookDaoImpl implements BookDao {
 
     public static final String GET_ALL = "SELECT books.id, books.book_name, books.author, books.isbn, books.price, books.pages, " +
-            "books.binding, books.year_publising, languages.name " +
+            "books.binding, books.year_publishing, languages.name " +
             "FROM books JOIN languages ON language_id = languages.id";
     public static final String GET_BY_ID = "SELECT books.id, books.book_name, books.author, books.isbn, books.price, books.pages, " +
-            "books.binding, books.year_publising, languages.name " +
+            "books.binding, books.year_publishing, languages.name " +
             "FROM books JOIN languages ON language_id = languages.id WHERE books.id = ?";
 
     public static final String CREATE_BOOK = "INSERT INTO books (book_name, author, isbn, price, pages, binding," +
-            "year_publising, language_id) VALUES (?, ?, ?, ?, ?, ?, ?, (SELECT id FROM languages WHERE name = ?))";
+            "year_publishing, language_id) VALUES (?, ?, ?, ?, ?, ?, ?, (SELECT id FROM languages WHERE name = ?))";
 
     public static final String GET_BY_ISBN = "SELECT books.id, books.book_name, books.author, books.isbn, books.price, books.pages, " +
-            "books.binding, books.year_publising, languages.name " +
+            "books.binding, books.year_publishing, languages.name " +
             "FROM books JOIN languages ON language_id = languages.id WHERE isbn = ?";
     public static final String UPDATE_BOOK = "UPDATE books SET book_name=?, author=?, isbn=?, price=?, pages=?, binding=?, " +
-            "year_publising=?, language_id = (SELECT id FROM languages WHERE name = ?) WHERE id=?";
+            "year_publishing=?, language_id = (SELECT id FROM languages WHERE name = ?) WHERE id=?";
     public static final String GET_ALL_AUTHOR = "SELECT books.id, books.book_name, books.author, books.isbn, books.price, books.pages, " +
-            "books.binding, books.year_publising, languages.name " +
+            "books.binding, books.year_publishing, languages.name " +
             "FROM books JOIN languages ON language_id = languages.id WHERE author =?";
     public static final String DELETE_BY_ID = "DELETE FROM books WHERE id=?";
 
@@ -47,7 +47,7 @@ public class BookDaoImpl implements BookDao {
             statement.setBigDecimal(4, book.getPrice());
             statement.setInt(5, book.getPages());
             statement.setString(6, book.getBinding());
-            statement.setInt(7, book.getYear_publising());
+            statement.setInt(7, book.getYear_publishing());
             statement.setString(8, book.getLanguage().toString());
             if (statement.executeUpdate() == 1) {
                 return getByIsbn(book.getIsbn());
@@ -117,7 +117,7 @@ public class BookDaoImpl implements BookDao {
         book.setPrice(resultSet.getBigDecimal("price"));
         book.setPages(resultSet.getInt("pages"));
         book.setBinding(resultSet.getString("binding"));
-        book.setYear_publising(resultSet.getInt("year_publising"));
+        book.setYear_publishing(resultSet.getInt("year_publishing"));
         book.setLanguage(Book.Language.valueOf(resultSet.getString("name")));
         return book;
     }
@@ -167,7 +167,7 @@ public class BookDaoImpl implements BookDao {
             statement.setBigDecimal(4, book.getPrice());
             statement.setInt(5, book.getPages());
             statement.setString(6, book.getBinding());
-            statement.setInt(7, book.getYear_publising());
+            statement.setInt(7, book.getYear_publishing());
             statement.setString(8, book.getLanguage().toString());
             statement.setLong(9, book.getId());
             if (statement.executeUpdate() == 1) {

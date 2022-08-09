@@ -1,6 +1,5 @@
 package com.company.controller;
 
-import com.company.dao.BookDao;
 import com.company.dao.BookDaoImpl;
 import com.company.dao.DateSourсe;
 import com.company.entity.Book;
@@ -62,7 +61,7 @@ public class BookController {
         List<Book> books = bookService.getAll();
         books.forEach(book ->
                 System.out.println(book.getId() + " " + book.getBook_name() + " " + book.getAuthor() + " "
-                        + book.getYear_publising()));
+                        + book.getYear_publishing()));
     }
 
     public static void createBookFromConsole() {
@@ -79,7 +78,7 @@ public class BookController {
         System.out.println("Enter count of pages");
         book.setBinding(in.nextLine());
         System.out.println("Enter year_bublising");
-        book.setYear_publising(in.nextInt());
+        book.setYear_publishing(in.nextInt());
         System.out.println("Enter language ");
         book.setLanguage(Book.Language.valueOf((in.nextLine()).toUpperCase()));
         LoggerBookstore.logger.debug("Get service metod create from booService");
@@ -100,7 +99,7 @@ public class BookController {
         System.out.println("Enter count of pages");
         book.setBinding(in.nextLine());
         System.out.println("Enter year_bublising");
-        book.setYear_publising(in.nextInt());
+        book.setYear_publishing(in.nextInt());
         System.out.println("Enter language ");
         book.setLanguage(Book.Language.valueOf((in.nextLine()).toUpperCase()));
         LoggerBookstore.logger.debug("Get service metod update from booService");

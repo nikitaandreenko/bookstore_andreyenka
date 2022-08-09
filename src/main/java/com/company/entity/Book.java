@@ -67,11 +67,11 @@ public class Book {
         this.binding = binding;
     }
 
-    public Integer getYear_publising() {
+    public Integer getYear_publishing() {
         return year_publising;
     }
 
-    public void setYear_publising(Integer year_publising) {
+    public void setYear_publishing(Integer year_publising) {
         this.year_publising = year_publising;
     }
 
