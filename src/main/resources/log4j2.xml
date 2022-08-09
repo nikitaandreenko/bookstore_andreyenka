@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="info">
     <Properties>
-<!--        <projec.build.sourceEncoding>UTF-8</projec.build.sourceEncoding>-->
+        <!--        <projec.build.sourceEncoding>UTF-8</projec.build.sourceEncoding>-->
         <property name="LOG_DIR">logs</property>
         <property name="pattern_file">%d{yyyy-MM-dd HH:mm:ss} [%M] %-5level %logger{5} - %msg%n</property>
         <property name="pattern_console">%d{HH:mm:ss} [%M] %-5level %logger{5} - %msg%n</property>
@@ -18,20 +18,26 @@
     </Appenders>
 
     <Loggers>
-        <Logger name="com.company.dao.BookDaoImpl" level="debug">
-            <AppenderRef ref="MyConsole"/>
-        </Logger>
-        <Logger name="com.company.dao.BookDaoImpl" level="debug">
-            <AppenderRef ref="MyConsole"/>
-        </Logger>
-        <Logger name="Log_File" level="info" additivity="false">
+        <Logger name="com.company.dao.connection.DateSourсe" level="info">
             <AppenderRef ref="File1"/>
         </Logger>
+        <Logger name="com.company.dao.BookDaoImpl" level="debug">
+            <AppenderRef ref="MyConsole"/>
+        </Logger>
+        <Logger name="com.company.service.BookService" level="debug">
+            <AppenderRef ref="MyConsole"/>
+        </Logger>
+        <Logger name="com.company.dao.UserDaoImpl" level="debug">
+            <AppenderRef ref="MyConsole"/>
+        </Logger>
+        <Logger name="com.company.service.UserService" level="debug">
+            <AppenderRef ref="MyConsole"/>
+        </Logger>
 
-<!--        <Root level="debug">-->
-<!--            <AppenderRef ref="Console"/>-->
-<!--            <AppenderRef ref="File1" level="info"/>-->
-<!--        </Root>-->
+        <!--        <Root level="debug">-->
+        <!--            <AppenderRef ref="Console"/>-->
+        <!--            <AppenderRef ref="File1" level="info"/>-->
+        <!--        </Root>-->
     </Loggers>
 
 </Configuration>

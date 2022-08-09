@@ -1,6 +1,7 @@
 package com.company.service;
 
-import com.company.dao.impl.UserDaoImpl;
+
+import com.company.dao.UserDaoImpl;
 import com.company.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,7 +17,7 @@ public class UserService {
     }
 
     public User create(User user) {
-        log.debug("Create user={} database users", user);
+        log.debug("Create user={} in database user", user);
         return userDao.create(user);
     }
 
