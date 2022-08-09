@@ -1,13 +1,10 @@
 package com.company.service;
 
-import com.company.dao.BookDaoImpl;
-import com.company.dao.UserDaoImpl;
-import com.company.entity.Book;
+import com.company.dao.impl.UserDaoImpl;
 import com.company.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public class UserService {
