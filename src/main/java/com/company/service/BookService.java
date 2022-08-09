@@ -47,11 +47,7 @@ public class BookService {
 
     public List<Book> getByAuthor(String author) {
         log.debug("Get book by author={} from database books", author);
-        List<Book> books = bookDao.getByAuthor(author);
-        if (books == null) {
-            throw new RuntimeException("Books by author:" + author + " don't exist");
-        }
-        return books;
+        return bookDao.getByAuthor(author);
     }
 
     public Long countAllBooks() {

@@ -140,11 +140,10 @@ public class BookDaoImpl implements BookDao {
                 Book book = process(resultSet);
                 books.add(book);
             }
-            return books;
         } catch (SQLException e) {
             log.error(e.getMessage(), e);
         }
-        return null;
+        return books;
     }
 
     @Override

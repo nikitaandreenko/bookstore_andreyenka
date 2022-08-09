@@ -1,5 +1,4 @@
 /*
-<<<<<<< HEAD
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS roles;
 DROP TABLE IF EXISTS books;
