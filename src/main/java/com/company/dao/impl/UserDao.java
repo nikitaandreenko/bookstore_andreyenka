@@ -1,4 +1,4 @@
-package com.company.dao;
+package com.company.dao.impl;
 
 import com.company.entity.Book;
 import com.company.entity.User;
@@ -6,10 +6,9 @@ import com.company.entity.User;
 import java.util.List;
 
 public interface UserDao {
-    //Create
-   User create(User user);
 
-    //Read
+    User create(User user);
+
     User getById(Long id);
 
     User getUserByEmail(String email);
@@ -18,12 +17,10 @@ public interface UserDao {
 
     List<User> getUserByLastName(String lastName);
 
-    int countAllUsers();
+    Long countAllUsers();
 
-    //Update
     User update(User user);
 
-    //Delete
     boolean delete(Long id);
 
 

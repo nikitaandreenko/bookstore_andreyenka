@@ -1,15 +1,20 @@
-package com.company.dao;
+package com.company.dao.connection;
 
-import com.company.util.LoggerBookstore;
+
+import com.company.dao.BookDaoImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-import java.util.logging.Logger;
 
 public class DateSourсe {
+
+
+    private static final Logger log = LogManager.getLogger();
     private static final String URL_KEY = "db.url";
     private static final String USER_KEY = "db.user";
     private static final String PASSWORD_KEY = "db.password";
@@ -18,7 +23,7 @@ public class DateSourсe {
     private Properties properties;
 
     public Connection getConnection() {
-        LoggerBookstore.logger.info("Connection with database");
+        log.info("Connection with database");
         if (connection == null) {
             try {
                 properties = new Properties();

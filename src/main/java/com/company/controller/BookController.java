@@ -1,22 +1,24 @@
 package com.company.controller;
 
 import com.company.dao.BookDaoImpl;
-import com.company.dao.DateSourсe;
+import com.company.dao.connection.DateSourсe;
 import com.company.entity.Book;
 import com.company.service.BookService;
-import com.company.util.LoggerBookstore;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class BookController {
-    private static BookService bookService = new BookService(new BookDaoImpl(new DateSourсe()));
+    private static BookService bookService;
+
 
     public BookController(BookService bookService) {
         this.bookService = bookService;
     }
 
-    public static void info() {
+    public void info() {
         Scanner in = new Scanner(System.in);
         System.out.println("Enter command");
         String command = in.nextLine();
@@ -38,33 +40,30 @@ public class BookController {
         }
     }
 
-    private static void delete(String command) {
+    private void delete(String command) {
         String[] words = command.split(" ");
         String firstCommandUser = words[0];
         Long secondCommandUser = Long.parseLong(words[1]);
-        LoggerBookstore.logger.debug("Get service metod delete from booService");
         bookService.delete(secondCommandUser);
     }
 
-    private static void get(String command) {
+    private void get(String command) {
         String[] words = command.split(" ");
         String firstCommandUser = words[0];
         Long secondCommandUser = Long.parseLong(words[1]);
-        LoggerBookstore.logger.debug("Get service metod getById from booService");
         Book book = bookService.getById(secondCommandUser);
         System.out.println(book);
     }
 
-    private static void all() {
+    private void all() {
         boolean commandBol;
-        LoggerBookstore.logger.debug("Get service metod getAll from booService");
         List<Book> books = bookService.getAll();
         books.forEach(book ->
                 System.out.println(book.getId() + " " + book.getBook_name() + " " + book.getAuthor() + " "
                         + book.getYear_publishing()));
     }
 
-    public static void createBookFromConsole() {
+    public void createBookFromConsole() {
         Book book = new Book();
         Scanner in = new Scanner(System.in);
         System.out.println("Enter name book");
@@ -81,11 +80,10 @@ public class BookController {
         book.setYear_publishing(in.nextInt());
         System.out.println("Enter language ");
         book.setLanguage(Book.Language.valueOf((in.nextLine()).toUpperCase()));
-        LoggerBookstore.logger.debug("Get service metod create from booService");
         bookService.create(book);
     }
 
-    public static void updateBookFromConsole() {
+    public void updateBookFromConsole() {
         Book book = new Book();
         Scanner in = new Scanner(System.in);
         System.out.println("Enter name book");
@@ -102,7 +100,6 @@ public class BookController {
         book.setYear_publishing(in.nextInt());
         System.out.println("Enter language ");
         book.setLanguage(Book.Language.valueOf((in.nextLine()).toUpperCase()));
-        LoggerBookstore.logger.debug("Get service metod update from booService");
         bookService.update(book);
     }
 }
