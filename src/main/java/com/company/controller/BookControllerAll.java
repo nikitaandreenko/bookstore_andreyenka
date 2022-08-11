@@ -23,9 +23,31 @@ public class BookControllerAll extends HttpServlet {
         BookService bookService = new BookService(bookDao);
         resp.setContentType("text/html");
         PrintWriter writer = resp.getWriter();
-        List <Book> books = bookService.getAll();
+        List<Book> books = bookService.getAll();
+        writer.write("<style>.b1 {\n" +
+                "    background: navy;\n" +
+                "    color: white;\n" +
+                "    font-size: 9pt;\n" +
+                "   } </style>");
+
+        writer.write("<style>.table {\n" +
+                "    width: 300px;\n" +
+                "    border: 2px solid\n" +
+                "   }" +
+                "td { " +
+                "text-align: center;}" +
+                "</style>");
+        writer.write("<h1 align=\"center\">Books</h1>");
         books.forEach(book ->
-                writer.write("<h1>" + book.getBook_name() + " " + book.getAuthor() + " "
-                        + book.getYear_publishing() +  "</h1>"));
+                writer.write("<table align=\"center\" class = \"table\">" + "<tr>" + "<th>" + "Name" + "</th>" +
+                        "<th>" + "Author" + "</th>" +
+                        "<th>" + "Year publishing" + "</th>" +
+                        "<tr>" +
+                        "<td>" + "<button class =\"b1\">" + book.getBook_name() + "</button>" + "</td>" +
+                        "<td>" + book.getAuthor() + "</td>" +
+                        "<td>" + book.getYear_publishing() + "</td>"
+                        + "</tr>"
+                        + "</table>"));
+
     }
 }
