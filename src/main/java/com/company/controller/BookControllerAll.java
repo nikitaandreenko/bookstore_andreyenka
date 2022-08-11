@@ -43,7 +43,9 @@ public class BookControllerAll extends HttpServlet {
                         "<th>" + "Author" + "</th>" +
                         "<th>" + "Year publishing" + "</th>" +
                         "<tr>" +
-                        "<td>" + "<button class =\"b1\">" + book.getBook_name() + "</button>" + "</td>" +
+                        "<td>" +
+                        "<button onclick=\"window.location.href='http://localhost:8080/bookstore/book?id="+book.getId()+
+                        "';\" class =\"b1\">" + book.getBook_name() + "</button>" + "</td>" +
                         "<td>" + book.getAuthor() + "</td>" +
                         "<td>" + book.getYear_publishing() + "</td>"
                         + "</tr>"
