@@ -22,7 +22,12 @@ public class DateSourсe {
     private Connection connection;
     private Properties properties;
 
-    public Connection getConnection() {
+    public Connection getConnection()  {
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         log.info("Connection with database");
         if (connection == null) {
             try {

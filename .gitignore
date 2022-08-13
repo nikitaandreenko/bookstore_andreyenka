@@ -36,4 +36,4 @@ bin/
 *.class
 
 # Logging file
-*.log
+.logs/
