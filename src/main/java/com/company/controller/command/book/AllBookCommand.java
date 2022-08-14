@@ -22,35 +22,8 @@ public class AllBookCommand implements Command {
     public String execute(HttpServletRequest req){
         List<Book> books = bookService.getAll();
         req.setAttribute("all_book",books);
+        req.setAttribute("message","bookstore by Andreyenka");
         return "jsp/book/all_book.jsp";
-//        <a href="controller?command=book&id="${book.id}>
-        //подразумевается под запросом all_book объект books
-//        writer.write("<style>.b1 {\n" +
-//                "    background: navy;\n" +
-//                "    color: white;\n" +
-//                "    font-size: 9pt;\n" +
-//                "   } </style>");
-//
-//        writer.write("<style>.table {\n" +
-//                "    width: 300px;\n" +
-//                "    border: 2px solid\n" +
-//                "   }" +
-//                "td { " +
-//                "text-align: center;}" +
-//                "</style>");
-//        writer.write("<h1 align=\"center\">Books</h1>");
-//        books.forEach(book ->
-//                writer.write("<table align=\"center\" class = \"table\">" + "<tr>" + "<th>" + "Name" + "</th>" +
-//                        "<th>" + "Author" + "</th>" +
-//                        "<th>" + "Year publishing" + "</th>" +
-//                        "<tr>" +
-//                        "<td>" +
-//                        "<button onclick=\"window.location.href='http://localhost:8080/bookstore/book?id="+book.getId()+
-//                        "';\" class =\"b1\">"  + book.getBook_name() + "</button>" + "</td>" +
-//                        "<td>" + book.getAuthor() + "</td>" +
-//                        "<td>" + book.getYear_publishing() + "</td>"
-//                        + "</tr>"
-//                        + "</table>"));
 
     }
 }

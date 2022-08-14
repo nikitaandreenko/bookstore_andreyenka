@@ -24,6 +24,7 @@ public class UserCommand implements Command {
         Long id = Long.parseLong(idRaw);
         User user = userService.getById(id);
         req.setAttribute("user",user);
+        req.setAttribute("message","bookstore by Andreyenka");
         return "jsp/user/user.jsp";
     }
 }

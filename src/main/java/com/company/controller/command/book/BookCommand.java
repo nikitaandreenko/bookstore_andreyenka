@@ -26,6 +26,7 @@ public class BookCommand implements Command {
         Long id = Long.parseLong(idRaw);
         Book book = bookService.getById(id);
         req.setAttribute("book",book);
+        req.setAttribute("message","bookstore by Andreyenka");
         return "jsp/book/book.jsp";
     }
 }
