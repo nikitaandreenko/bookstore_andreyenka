@@ -22,7 +22,7 @@ public class AllBookCommand implements Command {
     public String execute(HttpServletRequest req){
         List<Book> books = bookService.getAll();
         req.setAttribute("all_book",books);
-        return "all_book.jsp";
+        return "jsp/book/all_book.jsp";
 //        <a href="controller?command=book&id="${book.id}>
         //подразумевается под запросом all_book объект books
 //        writer.write("<style>.b1 {\n" +

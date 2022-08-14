@@ -25,8 +25,8 @@ public class CommandFactory {
         commandMap.put("book",new BookCommand(bookService));
         commandMap.put("all_book",new AllBookCommand(bookService));
         UserService userService = new UserService(new UserDaoImpl(DateSourсe.INSTANCE));
-        commandMap.put("user",new AllUserCommand(userService));
-        commandMap.put("all_user", new UserCommand(userService));
+        commandMap.put("all_user",new AllUserCommand(userService));
+        commandMap.put("user", new UserCommand(userService));
     }
 
     public Command getCommand(String command) {

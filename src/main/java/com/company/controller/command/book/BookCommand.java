@@ -26,14 +26,6 @@ public class BookCommand implements Command {
         Long id = Long.parseLong(idRaw);
         Book book = bookService.getById(id);
         req.setAttribute("book",book);
-        return "book.jsp";
-//        writer.write("<style>.text {\n" +
-//                "    font-size: 120%;\n" +
-//                "    font-family: Arial, Helvetica, sans-serif;\n" +
-//                "    color: green;\n" +
-//                "   } </style>");
-//        writer.write("<h1 align=\"center\">Book</h1>");
-//        writer.write("<h3 align=\"center\" class = \"text\">" + book.getBook_name() + " " + book.getAuthor() + " "
-//                + book.getYear_publishing() + "</h3>");
+        return "jsp/book/book.jsp";
     }
 }

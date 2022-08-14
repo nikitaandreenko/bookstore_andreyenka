@@ -22,10 +22,7 @@ public class AllUserCommand implements Command {
     @Override
     public String execute(HttpServletRequest req) {
         List<User> users = userService.getAll();
-        req.setAttribute("/jsp/book/all_user", users);
-        return "all_user.jsp";
-//        users.forEach(user ->
-//                writer.write("<h1>" + user.getFirstName() + " " + user.getFirstName() + " "
-//                        + user.getRole() + "</h1>"));
+        req.setAttribute("all_user", users);
+        return "jsp/user/all_user.jsp";
     }
 }

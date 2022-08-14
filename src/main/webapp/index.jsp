@@ -1,9 +1,10 @@
 <%@ page contentType="text/html;UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
     <head>
     <style>
             body {
-            background: #000 url(bookstore.png) no-repeat;
+            background: url(bookstore.png) no-repeat;
     		color: #000;
     		background-size: cover;
     	}
