@@ -8,6 +8,7 @@
             border: none;
             margin-bottom: 20px;
         }
+
         table thead th {
             font-weight: bold;
             text-align: left;
@@ -18,6 +19,7 @@
             border-left: 1px solid #ddd;
             border-right: 1px solid #ddd;
         }
+
         table tbody td {
             text-align: left;
             border-left: 1px solid #ddd;
@@ -26,13 +28,16 @@
             font-size: 14px;
             vertical-align: top;
         }
+
         table thead tr th:first-child, .table tbody tr td:first-child {
             border-left: none;
         }
+
         table thead tr th:last-child, .table tbody tr td:last-child {
             border-right: none;
         }
-        table tbody tr:nth-child(even){
+
+        table tbody tr:nth-child(even) {
             background: #f3f3f3;
         }
     </style>

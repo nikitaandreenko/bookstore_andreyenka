@@ -5,6 +5,7 @@ import com.company.controller.command.book.BookCommand;
 import com.company.controller.command.error.ErrorCommand;
 import com.company.controller.command.impl.Command;
 import com.company.controller.command.user.AllUserCommand;
+import com.company.controller.command.user.CreateUserCommand;
 import com.company.controller.command.user.UserCommand;
 import com.company.dao.BookDaoImpl;
 import com.company.dao.UserDaoImpl;
@@ -29,6 +30,7 @@ public class CommandFactory {
         commandMap.put("all_user", new AllUserCommand(userService));
         commandMap.put("user", new UserCommand(userService));
         commandMap.put("error", new ErrorCommand());
+        commandMap.put("create_user", new CreateUserCommand(userService));
     }
 
     public Command getCommand(String command) {

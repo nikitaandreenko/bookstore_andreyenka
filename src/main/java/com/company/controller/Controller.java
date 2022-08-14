@@ -35,6 +35,15 @@ public class Controller extends HttpServlet {
     }
 
     @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html");
+        String commandParam = req.getParameter("command");
+        Command command = CommandFactory.INSTANCE.getCommand("create_user");
+        String page=command.execute(req);
+        req.getRequestDispatcher(page).forward(req, resp);
+    }
+
+    @Override
     public void destroy() {
         DateSourсe.INSTANCE.close();
     }
