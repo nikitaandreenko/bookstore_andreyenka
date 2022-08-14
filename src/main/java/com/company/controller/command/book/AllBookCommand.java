@@ -19,10 +19,10 @@ public class AllBookCommand implements Command {
     }
 
     @Override
-    public String execute(HttpServletRequest req){
+    public String execute(HttpServletRequest req) {
         List<Book> books = bookService.getAll();
-        req.setAttribute("all_book",books);
-        req.setAttribute("message","bookstore by Andreyenka");
+        req.setAttribute("all_book", books);
+        req.setAttribute("message", "bookstore by Andreyenka");
         return "jsp/book/all_book.jsp";
 
     }

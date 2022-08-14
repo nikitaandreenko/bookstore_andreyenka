@@ -148,7 +148,7 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public Long countAllBooks() {
-       log.debug("Count all books from database books");
+        log.debug("Count all books from database books");
         Connection connection = dateSourсe.getConnection();
         try (Statement statement = connection.createStatement();) {
             ResultSet resultSet = statement.executeQuery("SELECT count(*) AS total FROM books");

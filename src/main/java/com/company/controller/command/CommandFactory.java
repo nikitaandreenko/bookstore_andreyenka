@@ -2,6 +2,7 @@ package com.company.controller.command;
 
 import com.company.controller.command.book.AllBookCommand;
 import com.company.controller.command.book.BookCommand;
+import com.company.controller.command.error.ErrorCommand;
 import com.company.controller.command.impl.Command;
 import com.company.controller.command.user.AllUserCommand;
 import com.company.controller.command.user.UserCommand;
@@ -21,12 +22,13 @@ public class CommandFactory {
 
     private CommandFactory() {
         commandMap = new HashMap<>();
-        BookService bookService= new BookService(new BookDaoImpl(DateSourсe.INSTANCE));
-        commandMap.put("book",new BookCommand(bookService));
-        commandMap.put("all_book",new AllBookCommand(bookService));
+        BookService bookService = new BookService(new BookDaoImpl(DateSourсe.INSTANCE));
+        commandMap.put("book", new BookCommand(bookService));
+        commandMap.put("all_book", new AllBookCommand(bookService));
         UserService userService = new UserService(new UserDaoImpl(DateSourсe.INSTANCE));
-        commandMap.put("all_user",new AllUserCommand(userService));
+        commandMap.put("all_user", new AllUserCommand(userService));
         commandMap.put("user", new UserCommand(userService));
+        commandMap.put("error", new ErrorCommand());
     }
 
     public Command getCommand(String command) {

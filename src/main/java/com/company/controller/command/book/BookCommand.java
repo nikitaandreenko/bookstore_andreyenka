@@ -21,12 +21,12 @@ public class BookCommand implements Command {
     }
 
     @Override
-    public String execute(HttpServletRequest req){
+    public String execute(HttpServletRequest req) {
         String idRaw = req.getParameter("id");
         Long id = Long.parseLong(idRaw);
         Book book = bookService.getById(id);
-        req.setAttribute("book",book);
-        req.setAttribute("message","bookstore by Andreyenka");
+        req.setAttribute("book", book);
+        req.setAttribute("message", "bookstore by Andreyenka");
         return "jsp/book/book.jsp";
     }
 }

@@ -11,18 +11,29 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/controller") //localhost:8080/bookstore/controller?command=
-// allbook,alluser, create_book_form,create_user_form, update_book_form, update_user_form, book&id=5,
+@WebServlet("/controller")
 public class Controller extends HttpServlet {
     private DateSourсe dateSourсe;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String commandParam = req.getParameter("command");
-        Command command = CommandFactory.INSTANCE.getCommand(commandParam);
-        String page = command.execute(req);
+        Command command;
+        if (CommandFactory.INSTANCE.getCommand(commandParam) == null) {
+            command = CommandFactory.INSTANCE.getCommand("error");
+        } else {
+            command = CommandFactory.INSTANCE.getCommand(commandParam);
+        }
+        String page;
+        try {
+            page = command.execute(req);
+        } catch (Exception e) {
+            req.setAttribute("message", "My friend please write correctly what you want to see in my store");
+            page = "jsp/error.jsp";
+        }
         req.getRequestDispatcher(page).forward(req, resp);
     }
+
     @Override
     public void destroy() {
         DateSourсe.INSTANCE.close();

@@ -10,6 +10,7 @@
             outline: 3px solid #ffd300;
             font-size: 15px;
         }
+
         table th {
             font-weight: bold;
             padding: 7px;
@@ -19,6 +20,7 @@
             font-size: 15px;
             border-bottom: 3px solid #ffd300;
         }
+
         table td {
             padding: 7px;
             border: none;

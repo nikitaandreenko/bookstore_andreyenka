@@ -23,7 +23,7 @@ public class AllUserCommand implements Command {
     public String execute(HttpServletRequest req) {
         List<User> users = userService.getAll();
         req.setAttribute("all_user", users);
-        req.setAttribute("message","bookstore by Andreyenka");
+        req.setAttribute("message", "bookstore by Andreyenka");
         return "jsp/user/all_user.jsp";
     }
 }

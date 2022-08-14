@@ -51,7 +51,7 @@ public class DateSourсe {
         return connection;
     }
 
-    public void close(){
+    public void close() {
         if (connection != null) {
             try {
                 connection.close();
