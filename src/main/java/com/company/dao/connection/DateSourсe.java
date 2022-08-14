@@ -13,6 +13,11 @@ import java.util.Properties;
 
 public class DateSourсe {
 
+    public static final DateSourсe INSTANCE = new DateSourсe();
+
+    private DateSourсe() {
+    }
+
 
     private static final Logger log = LogManager.getLogger(DateSourсe.class);
     private static final String URL_KEY = "db.url";
@@ -22,7 +27,7 @@ public class DateSourсe {
     private Connection connection;
     private Properties properties;
 
-    public Connection getConnection()  {
+    public Connection getConnection() {
         try {
             Class.forName("org.postgresql.Driver");
         } catch (ClassNotFoundException e) {
@@ -46,9 +51,13 @@ public class DateSourсe {
         return connection;
     }
 
-    public void close() throws SQLException {
+    public void close(){
         if (connection != null) {
-            connection.close();
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }
