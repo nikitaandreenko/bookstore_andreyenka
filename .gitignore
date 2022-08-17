@@ -38,6 +38,5 @@ bin/
 # Logging file
 .logs/
 
-# Target file
-.target/
-
+## Target
+ .target/
