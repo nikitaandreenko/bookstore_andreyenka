@@ -5,12 +5,12 @@ DROP TABLE IF EXISTS books;
 DROP TABLE IF EXISTS languages;
 */
 
-create TABLE IF NOT EXISTS languages
+CREATE TABLE IF NOT EXISTS languages
 (
     id BIGSERIAL PRIMARY KEY,
     name VARCHAR(100) UNIQUE NOT NULL
 );
-create TABLE IF NOT EXISTS books
+CREATE TABLE IF NOT EXISTS books
 (
     id BIGSERIAL NOT NULL,
     book_name VARCHAR(75) NOT NULL,
@@ -21,14 +21,14 @@ create TABLE IF NOT EXISTS books
     binding VARCHAR(30) NOT NULL,
     year_publishing INTEGER,
     language_id BIGINT REFERENCES languages
- );
+);
 
-create TABLE IF NOT EXISTS roles
+CREATE TABLE IF NOT EXISTS roles
 (
     id   BIGSERIAL PRIMARY KEY,
     name VARCHAR(100) UNIQUE NOT NULL
 );
-create TABLE IF NOT EXISTS users
+CREATE TABLE IF NOT EXISTS users
 (
     id BIGSERIAL PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL,

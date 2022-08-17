@@ -24,6 +24,5 @@ public class AllBookCommand implements Command {
         req.setAttribute("all_book", books);
         req.setAttribute("message", "bookstore by Andreyenka");
         return "jsp/book/all_book.jsp";
-
     }
 }
