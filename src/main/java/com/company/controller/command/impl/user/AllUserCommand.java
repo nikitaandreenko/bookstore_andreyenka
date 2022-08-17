@@ -1,19 +1,15 @@
-package com.company.controller.command.user;
+package com.company.controller.command.impl.user;
 
-import com.company.controller.command.impl.Command;
+import com.company.controller.command.Command;
 import com.company.entity.User;
 import com.company.service.UserService;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 public class AllUserCommand implements Command {
 
-    private final UserService userService;
+    private final com.company.service.UserService userService;
 
     public AllUserCommand(UserService userService) {
         this.userService = userService;
@@ -22,8 +18,8 @@ public class AllUserCommand implements Command {
     @Override
     public String execute(HttpServletRequest req) {
         List<User> users = userService.getAll();
-        req.setAttribute("all_user", users);
+        req.setAttribute("all_users", users);
         req.setAttribute("message", "bookstore by Andreyenka");
-        return "jsp/user/all_user.jsp";
+        return "jsp/user/all_users.jsp";
     }
 }

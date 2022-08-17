@@ -1,18 +1,13 @@
-package com.company.controller.command.user;
+package com.company.controller.command.impl.user;
 
-import com.company.controller.command.impl.Command;
+import com.company.controller.command.Command;
 import com.company.entity.User;
 import com.company.service.UserService;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
-import java.io.IOException;
-import java.io.PrintWriter;
 
 public class UserCommand implements Command {
 
-    private final UserService userService;
+    private final com.company.service.UserService userService;
 
     public UserCommand(UserService userService) {
         this.userService = userService;

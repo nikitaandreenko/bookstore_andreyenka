@@ -1,17 +1,18 @@
 package com.company.controller.command;
 
-import com.company.controller.command.book.AllBookCommand;
-import com.company.controller.command.book.BookCommand;
-import com.company.controller.command.error.ErrorCommand;
-import com.company.controller.command.impl.Command;
-import com.company.controller.command.user.AllUserCommand;
-import com.company.controller.command.user.CreateUserCommand;
-import com.company.controller.command.user.UserCommand;
-import com.company.dao.BookDaoImpl;
-import com.company.dao.UserDaoImpl;
+import com.company.controller.command.impl.book.AllBookCommand;
+import com.company.controller.command.impl.book.BookCommand;
+import com.company.controller.command.impl.error.ErrorCommand;
+import com.company.controller.command.impl.user.AllUserCommand;
+import com.company.controller.command.impl.user.CreateUserCommand;
+import com.company.controller.command.impl.user.UserCommand;
+import com.company.dao.impl.BookDaoImpl;
+import com.company.dao.impl.UserDaoImpl;
 import com.company.dao.connection.DateSourсe;
 import com.company.service.BookService;
 import com.company.service.UserService;
+import com.company.service.impl.BookServiceImpl;
+import com.company.service.impl.UserServiceImpl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,11 +24,11 @@ public class CommandFactory {
 
     private CommandFactory() {
         commandMap = new HashMap<>();
-        BookService bookService = new BookService(new BookDaoImpl(DateSourсe.INSTANCE));
+        BookService bookService = new BookServiceImpl(new BookDaoImpl(DateSourсe.INSTANCE));
         commandMap.put("book", new BookCommand(bookService));
-        commandMap.put("all_book", new AllBookCommand(bookService));
-        UserService userService = new UserService(new UserDaoImpl(DateSourсe.INSTANCE));
-        commandMap.put("all_user", new AllUserCommand(userService));
+        commandMap.put("all_books", new AllBookCommand(bookService));
+        UserService userService = new UserServiceImpl(new UserDaoImpl(DateSourсe.INSTANCE));
+        commandMap.put("all_users", new AllUserCommand(userService));
         commandMap.put("user", new UserCommand(userService));
         commandMap.put("error", new ErrorCommand());
         commandMap.put("create_user", new CreateUserCommand(userService));

@@ -1,4 +1,4 @@
-package com.company.dao.impl;
+package com.company.dao;
 
 import com.company.entity.Book;
 

@@ -1,6 +1,6 @@
-package com.company.controller.command.error;
+package com.company.controller.command.impl.error;
 
-import com.company.controller.command.impl.Command;
+import com.company.controller.command.Command;
 import jakarta.servlet.http.HttpServletRequest;
 
 public class ErrorCommand implements Command {

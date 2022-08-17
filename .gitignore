@@ -38,5 +38,6 @@ bin/
 # Logging file
 .logs/
 
-# Logging file
+# Target file
 .target/
+

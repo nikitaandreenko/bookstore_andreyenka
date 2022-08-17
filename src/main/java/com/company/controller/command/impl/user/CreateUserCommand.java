@@ -1,6 +1,6 @@
-package com.company.controller.command.user;
+package com.company.controller.command.impl.user;
 
-import com.company.controller.command.impl.Command;
+import com.company.controller.command.Command;
 import com.company.entity.User;
 import com.company.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 public class CreateUserCommand implements Command {
     private final UserService userService;
 
-    public CreateUserCommand(UserService userService) {
+    public CreateUserCommand(com.company.service.UserService userService) {
         this.userService = userService;
     }
 

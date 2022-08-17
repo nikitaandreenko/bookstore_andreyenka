@@ -1,6 +1,6 @@
 package com.company.controller;
 
-import com.company.controller.command.impl.Command;
+import com.company.controller.command.Command;
 import com.company.controller.command.CommandFactory;
 import com.company.dao.connection.DateSourсe;
 import jakarta.servlet.ServletException;
