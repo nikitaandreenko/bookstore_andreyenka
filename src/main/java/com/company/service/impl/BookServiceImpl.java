@@ -21,13 +21,14 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book create(Book book) {
         log.debug("Create book={} in database book", book);
+        validate(book);
         return bookDao.create(book);
     }
 
     @Override
     public Book getById(Long id) {
         log.debug("Get book by id={} from database books", id);
-        Book book = bookDao.getById(id);
+        Book book = bookDao.findById(id);
         if (book == null) {
             throw new RuntimeException("Book with id:" + id + " doesn't exist");
         }
@@ -47,7 +48,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> getAll() {
         log.debug("Get all books from database books");
-        return bookDao.getAll();
+        return bookDao.findAll();
     }
 
     @Override
@@ -59,17 +60,24 @@ public class BookServiceImpl implements BookService {
     @Override
     public Long countAllBooks() {
         log.debug("Count all books from database books");
-        return bookDao.countAllBooks();
+        return bookDao.countAll();
     }
 
     @Override
     public Book update(Book book) {
         log.debug("Update book={} in database books", book);
+        validate(book);
         Book book1 = bookDao.update(book);
         if (book1 == null) {
             throw new RuntimeException("Books can't be empty...");
         }
         return book1;
+    }
+
+    private void validate(Book book) {
+        if (book.getPrice().compareTo(BigDecimal.ZERO) < 0){
+            throw new RuntimeException("Price is not valid. Price can't be less 0");
+        };
     }
 
     @Override

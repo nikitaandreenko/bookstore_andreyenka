@@ -53,7 +53,7 @@
         <th>Surname</th>
         <th>Role</th>
     </tr>
-    <c:forEach items="${requestScope.all_user}" var="user" varStatus="counter">
+    <c:forEach items="${requestScope.all_users}" var="user" varStatus="counter">
         <tr>
             <td>${counter.count}</td>
             <td>${user.firstName}</td>

@@ -21,16 +21,16 @@
         <Logger name="com.company.dao.connection.DateSourсe" level="info">
             <AppenderRef ref="File1"/>
         </Logger>
-        <Logger name="com.company.dao.BookDaoImpl" level="debug">
+        <Logger name="com.company.dao.impl.BookDaoImpl" level="debug">
             <AppenderRef ref="MyConsole"/>
         </Logger>
-        <Logger name="com.company.service.BookService" level="debug">
+        <Logger name="com.company.service.impl.BookServiceImpl" level="debug">
             <AppenderRef ref="MyConsole"/>
         </Logger>
-        <Logger name="com.company.dao.UserDaoImpl" level="debug">
+        <Logger name="com.company.dao.impl.UserDaoImpl" level="debug">
             <AppenderRef ref="MyConsole"/>
         </Logger>
-        <Logger name="com.company.service.UserService" level="debug">
+        <Logger name="com.company.service.impl.UserServiceImpl" level="debug">
             <AppenderRef ref="MyConsole"/>
         </Logger>
 

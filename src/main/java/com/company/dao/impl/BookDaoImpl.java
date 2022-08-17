@@ -6,7 +6,6 @@ import com.company.entity.Book;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +64,7 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Book getById(Long id) {
+    public Book findById(Long id) {
         log.debug("Get book by id={} from database books", id);
         Connection connection = dateSourсe.getConnection();
         try (PreparedStatement statement = connection.prepareStatement(GET_BY_ID)) {
@@ -98,7 +97,7 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public List<Book> getAll() {
+    public List<Book> findAll() {
         log.debug("Get all books from database books");
         List<Book> books = new ArrayList<>();
         Connection connection = dateSourсe.getConnection();
@@ -147,7 +146,7 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Long countAllBooks() {
+    public Long countAll() {
         log.debug("Count all books from database books");
         Connection connection = dateSourсe.getConnection();
         try (Statement statement = connection.createStatement();) {
@@ -176,7 +175,7 @@ public class BookDaoImpl implements BookDao {
             statement.setString(8, book.getLanguage().toString());
             statement.setLong(9, book.getId());
             if (statement.executeUpdate() == 1) {
-                return getById(book.getId());
+                return findById(book.getId());
             }
         } catch (SQLException e) {
             log.error(e.getMessage(), e);
@@ -189,7 +188,7 @@ public class BookDaoImpl implements BookDao {
         log.debug("Delete book by id={} from database books", id);
         Connection connection = dateSourсe.getConnection();
         try (PreparedStatement statement = connection.prepareStatement(DELETE_BY_ID)) {
-            statement.setLong(1, getById(id).getId());
+            statement.setLong(1, findById(id).getId());
             return statement.executeUpdate() == 1;
         } catch (SQLException e) {
             log.error(e.getMessage(), e);

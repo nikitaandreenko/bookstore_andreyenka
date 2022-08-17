@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getById(Long id) {
         log.debug("Get user by id={} from database users", id);
-        User user = userDao.getById(id);
+        User user = userDao.findById(id);
         if (user == null) {
             throw new RuntimeException("User with id:" + id + " doesn't exist");
         }
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAll() {
         log.debug("Get all users from database users");
-        return userDao.getAll();
+        return userDao.findAll();
     }
 
     @Override
@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Long countAllUsers() {
         log.debug("Count all users from database users");
-        return userDao.countAllUsers();
+        return userDao.countAll();
     }
 
     @Override

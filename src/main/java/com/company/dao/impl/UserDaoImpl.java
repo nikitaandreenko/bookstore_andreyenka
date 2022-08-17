@@ -68,7 +68,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getById(Long id) {
+    public User findById(Long id) {
         log.debug("Get user by id={} from database users", id);
         Connection connection = dateSourсe.getConnection();
         try (PreparedStatement statement = connection.prepareStatement(GET_BY_ID)) {
@@ -101,7 +101,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> getAll() {
+    public List<User> findAll() {
         log.debug("Get all users from database users");
         List<User> users = new ArrayList<>();
         Connection connection = dateSourсe.getConnection();
@@ -137,7 +137,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Long countAllUsers() {
+    public Long countAll() {
         log.debug("Count all users from database users");
         Connection connection = dateSourсe.getConnection();
         try (Statement statement = connection.createStatement();) {
@@ -163,7 +163,7 @@ public class UserDaoImpl implements UserDao {
             statement.setString(5, user.getRole().toString());
             statement.setLong(6, user.getId());
             if (statement.executeUpdate() == 1) {
-                return getById(user.getId());
+                return findById(user.getId());
             }
         } catch (SQLException e) {
             log.error(e.getMessage(), e);
@@ -176,7 +176,7 @@ public class UserDaoImpl implements UserDao {
         log.debug("Delete user by id={} from database users", id);
         Connection connection = dateSourсe.getConnection();
         try (PreparedStatement statement = connection.prepareStatement(DELETE_BY_ID)) {
-            statement.setLong(1, getById(id).getId());
+            statement.setLong(1, findById(id).getId());
             return statement.executeUpdate() == 1;
         } catch (SQLException e) {
             log.error(e.getMessage(), e);
