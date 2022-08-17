@@ -17,6 +17,10 @@ public class Controller extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        process(req, resp);
+    }
+
+    private void process (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         String commandParam = req.getParameter("command");
         Command command;
         if (CommandFactory.INSTANCE.getCommand(commandParam) == null) {
@@ -36,11 +40,7 @@ public class Controller extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
-        String commandParam = req.getParameter("command");
-        Command command = CommandFactory.INSTANCE.getCommand("create_user");
-        String page=command.execute(req);
-        req.getRequestDispatcher(page).forward(req, resp);
+        process(req, resp);
     }
 
     @Override
