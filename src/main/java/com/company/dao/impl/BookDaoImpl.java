@@ -16,7 +16,7 @@ public class BookDaoImpl implements BookDao {
 
     public static final String GET_ALL = "SELECT books.id, books.book_name, books.author, books.isbn, books.price, books.pages, " +
             "books.binding, books.year_publishing, languages.name " +
-            "FROM books JOIN languages ON language_id = languages.id";
+            "FROM books LEFT JOIN languages ON language_id = languages.id";
     public static final String GET_BY_ID = "SELECT books.id, books.book_name, books.author, books.isbn, books.price, books.pages, " +
             "books.binding, books.year_publishing, languages.name " +
             "FROM books JOIN languages ON language_id = languages.id WHERE books.id = ?";
