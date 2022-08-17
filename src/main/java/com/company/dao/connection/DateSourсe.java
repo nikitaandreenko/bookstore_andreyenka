@@ -18,31 +18,35 @@ public class DateSourсe {
     private DateSourсe() {
     }
 
-
     private static final Logger log = LogManager.getLogger(DateSourсe.class);
-    private static final String URL_KEY = "db.local.url";
-    private static final String USER_KEY = "db.local.user";
-    private static final String PASSWORD_KEY = "db.local.password";
-
 
     private Connection connection;
-    public Connection getConnection() {
 
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+    public Connection getConnection() {
+        String url_key = null;
+        String user_key = null;
+        String password_key = null;
+        String typeOfConnection = ConfigurationManager.INSTANCE.getProperty("connection");
+
+        if(typeOfConnection.equals("local")){
+            url_key = ConfigurationManager.INSTANCE.getProperty("db.local.url");
+            user_key = ConfigurationManager.INSTANCE.getProperty("db.local.user");
+            password_key = ConfigurationManager.INSTANCE.getProperty("db.local.password");
         }
-        log.info("Connection with database");
+        else if(typeOfConnection.equals("remote")){
+            url_key = ConfigurationManager.INSTANCE.getProperty("db.elephant.url");
+            user_key = ConfigurationManager.INSTANCE.getProperty("db.elephant.user");
+            password_key = ConfigurationManager.INSTANCE.getProperty("db.elephant.password");
+        }
+        if (connection == null) {
             try {
-                connection = DriverManager.getConnection(
-                        ConfigurationManager.INSTANCE.getProperty(URL_KEY),
-                        ConfigurationManager.INSTANCE.getProperty(USER_KEY),
-                        ConfigurationManager.INSTANCE.getProperty(PASSWORD_KEY)
-                );
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
+                Class.forName("org.postgresql.Driver");
+                connection = DriverManager.getConnection(url_key, user_key, password_key);
+                log.info("Connection with database");
+            } catch (ClassNotFoundException | SQLException e) {
+                log.error(e);
             }
+        }
         return connection;
     }
 
