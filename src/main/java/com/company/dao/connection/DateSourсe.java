@@ -1,7 +1,7 @@
 package com.company.dao.connection;
 
 
-import com.company.dao.BookDaoImpl;
+import com.company.ConfigurationManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,42 +13,50 @@ import java.util.Properties;
 
 public class DateSourсe {
 
+    public static final DateSourсe INSTANCE = new DateSourсe();
+
+    private DateSourсe() {
+    }
 
     private static final Logger log = LogManager.getLogger(DateSourсe.class);
-    private static final String URL_KEY = "db.url";
-    private static final String USER_KEY = "db.user";
-    private static final String PASSWORD_KEY = "db.password";
 
     private Connection connection;
-    private Properties properties;
 
-    public Connection getConnection()  {
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+    public Connection getConnection() {
+        String url_key = null;
+        String user_key = null;
+        String password_key = null;
+        String typeOfConnection = ConfigurationManager.INSTANCE.getProperty("connection");
+
+        if(typeOfConnection.equals("local")){
+            url_key = ConfigurationManager.INSTANCE.getProperty("db.local.url");
+            user_key = ConfigurationManager.INSTANCE.getProperty("db.local.user");
+            password_key = ConfigurationManager.INSTANCE.getProperty("db.local.password");
         }
-        log.info("Connection with database");
+        else if(typeOfConnection.equals("remote")){
+            url_key = ConfigurationManager.INSTANCE.getProperty("db.elephant.url");
+            user_key = ConfigurationManager.INSTANCE.getProperty("db.elephant.user");
+            password_key = ConfigurationManager.INSTANCE.getProperty("db.elephant.password");
+        }
         if (connection == null) {
             try {
-                properties = new Properties();
-                properties.load(DateSourсe.class.getClassLoader().getResourceAsStream
-                        ("application.properties"));
-                connection = DriverManager.getConnection(
-                        properties.getProperty(URL_KEY),
-                        properties.getProperty(USER_KEY),
-                        properties.getProperty(PASSWORD_KEY)
-                );
-            } catch (SQLException | IOException e) {
-                throw new RuntimeException(e);
+                Class.forName("org.postgresql.Driver");
+                connection = DriverManager.getConnection(url_key, user_key, password_key);
+                log.info("Connection with database");
+            } catch (ClassNotFoundException | SQLException e) {
+                log.error(e);
             }
         }
         return connection;
     }
 
-    public void close() throws SQLException {
+    public void close() {
         if (connection != null) {
-            connection.close();
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }

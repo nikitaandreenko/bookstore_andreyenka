@@ -1,3 +1,14 @@
+INSERT INTO languages (name)
+VALUES
+    ('ENGLISH'),
+    ('RUSSIAN'),
+    ('SPANISH'),
+    ('FRENCH'),
+    ('DEUTSCH'),
+    ('ARABIC'),
+    ('CHINESE'),
+    ('JAPANESE');
+
 INSERT INTO books (book_name, author, isbn, price, pages, binding, year_publishing, language_id)
 VALUES         ('it starts us', 'Collen Hoover', '978-1668001226', 11.99, 366, 'solid', 2022, (SELECT id FROM languages WHERE name = 'ENGLISH')),
                ('I train update books', 'Collen Hoover', '978-1533723738', 11.99, 326, 'solid', 2019, (SELECT id FROM languages WHERE name = 'RUSSIAN')),
@@ -11,7 +22,7 @@ VALUES         ('it starts us', 'Collen Hoover', '978-1668001226', 11.99, 366, '
                ('The Power of Now', 'Eckhart Tolle', '978-1577314806', 11.99, 236, 'soft', 2021, (SELECT id FROM languages WHERE name = 'ENGLISH')),
                ('The Lord of the Rings Part One', 'J.R.R. Tolkien', '978-0063270886', 14.89, 432, 'solid', 2016, (SELECT id FROM languages WHERE name = 'RUSSIAN')),
                ('Fire & Blood: 300 Years Before A Game of Thrones', 'George R. R. Martin', '978-0063270835', 24.89, 754, 'solid', 2014, (SELECT id FROM languages WHERE name = 'RUSSIAN')),
-               ('Maybe Someday', 'Colleen Hoover', '978-1476753164', 11.62, 384, 'solid', 2017, (SELECT id FROM languages WHERE name = 'JAPANESE'),
+               ('Maybe Someday', 'Colleen Hoover', '978-1476753164', 11.62, 384, 'solid', 2017, (SELECT id FROM languages WHERE name = 'JAPANESE')),
                ('Harry Potter Spellbook: The Unofficial ', 'Newt Flamel', '979-8447208332', 7.95, 100, 'solid', 2021, (SELECT id FROM languages WHERE name = 'ENGLISH')),
                ('Harry Potter and the Goblet of Fire ', 'J. K. Rowling', '978-0545791427', 13.99, 464, 'solid', 2021, (SELECT id FROM languages WHERE name = 'ENGLISH')),
                ('Harry Potter and the Sorcerer Stone', 'J. K. Rowling', '978-0545791422', 13.13, 345, 'solid', 2019, (SELECT id FROM languages WHERE name = 'ENGLISH')),
@@ -20,18 +31,6 @@ VALUES         ('it starts us', 'Collen Hoover', '978-1668001226', 11.99, 366, '
                ('A Time for Mercy', 'John Grisham', '978-1338725536', 7.50, 469, 'soft', 2010, (SELECT id FROM languages WHERE name = 'ENGLISH')),
                ('Mastering the Art of French Cooking', 'Julia Child', '978-1238725736', 19.50, 1244, 'soft', 2015, (SELECT id FROM languages WHERE name = 'FRENCH') ),
                ('A Letter From Your Teacher: On the First Day of School', 'Shannon Olsen', '978-1735414126', 13.99, 31, 'soft', 2007, (SELECT id FROM languages WHERE name = 'ENGLISH'));
-
-
-INSERT INTO languages (name)
-VALUES
-('ENGLISH'),
-('RUSSIAN'),
-('SPANISH'),
-('FRENCH'),
-('DEUTSCH'),
-('ARABIC'),
-('CHINESE'),
-('JAPANESE');
 
 INSERT INTO roles (name)
 VALUES
