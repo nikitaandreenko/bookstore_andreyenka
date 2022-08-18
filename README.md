@@ -1,10 +1,29 @@
 # bookstore_bh
 
-## module_dao
+## without Spring
 
-* class DaoBook
-* class UserService
-* class DataSourse
-* CRUD metods
+### module1
+* DAO
 
-Installed connect with database and i:mplemented DAO pattern in module_dao with CRUD metods
+### module_2
+
+* service
+
+### module_3
+
+* build_tools
+* logging
+
+### module_4
+
+*servlets
+
+### modelr_5
+
+* jsp
+
+
+This my first WEB project without Spring
+
+# END
+
